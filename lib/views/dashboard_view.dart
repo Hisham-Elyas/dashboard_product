@@ -129,53 +129,76 @@ class DashboardView extends StatelessWidget {
   // Build a card widget for each product item
   Widget _buildProductItem(Product product) {
     return Card(
-      margin: EdgeInsets.symmetric(vertical: 8.h, horizontal: 16.w),
+      margin: EdgeInsets.all(8.w),
       child: Padding(
         padding: EdgeInsets.all(16.w),
-        child: Row(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Display product image if available
             product.image.isNotEmpty
-                ? Image.network(
-                    product.image,
-                    width: 80.w,
-                    height: 80.w,
-                    fit: BoxFit.cover,
+                ? SizedBox(
+                    height: 200.h,
+                    child: Image.network(
+                      product.image,
+                      width: double.infinity,
+                      height: 200.h,
+                      fit: BoxFit.contain,
+                    ),
                   )
-                : Container(width: 80.w, height: 80.w, color: Colors.grey),
-            SizedBox(width: 16.w),
-            // Product details
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(product.name,
-                      style: TextStyle(
-                          fontSize: 18.sp, fontWeight: FontWeight.bold)),
-                  SizedBox(height: 8.h),
-                  Text("Price: \$${product.price.toStringAsFixed(2)}"),
-                  SizedBox(height: 8.h),
-                  Text(product.detail),
-                ],
+                : Container(
+                    width: double.infinity,
+                    height: 200.h,
+                    color: Colors.grey,
+                  ),
+            SizedBox(height: 15.h),
+            Text(
+              product.name,
+              style: TextStyle(
+                fontSize: 16.sp,
+                fontWeight: FontWeight.bold,
               ),
             ),
-            // Edit and Delete actions
-            IconButton(
-              icon: Icon(Icons.edit, size: 24.sp),
-              onPressed: () {
-                _showProductDialog(product: product);
-              },
+            SizedBox(height: 5.h),
+            Text("Price: \$${product.price.toStringAsFixed(2)}"),
+            SizedBox(height: 5.h),
+            Expanded(
+              child: Text(
+                product.detail,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,
+              ),
             ),
-            IconButton(
-              icon: Icon(Icons.delete, size: 24.sp, color: Colors.red),
-              onPressed: () {
-                controller.deleteProduct(product.id!);
-              },
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  icon: Icon(Icons.edit, size: 20.sp),
+                  onPressed: () {
+                    _showProductDialog(product: product);
+                  },
+                ),
+                SizedBox(width: 5.h),
+                IconButton(
+                  icon: Icon(Icons.delete, size: 20.sp, color: Colors.red),
+                  onPressed: () {
+                    controller.deleteProduct(product.id!);
+                  },
+                ),
+              ],
             ),
           ],
         ),
       ),
     );
+  }
+
+  // Determine number of columns based on screen width
+  int _getCrossAxisCount(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    if (screenWidth >= 1200) return 5;
+    if (screenWidth >= 800) return 4;
+    return 3;
   }
 
   @override
@@ -188,17 +211,31 @@ class DashboardView extends StatelessWidget {
         if (controller.isLoading.value) {
           return const Center(child: CircularProgressIndicator());
         }
-
+        if (controller.products.isEmpty) {
+          return Center(
+            child: Text("No products available",
+                style: TextStyle(fontSize: 18.sp)),
+          );
+        }
         return RefreshIndicator(
           onRefresh: () async {
             controller.fetchProducts();
           },
-          child: ListView.builder(
-            itemCount: controller.products.length,
-            itemBuilder: (context, index) {
-              final product = controller.products[index];
-              return _buildProductItem(product);
-            },
+          child: Padding(
+            padding: EdgeInsets.all(16.w),
+            child: GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: _getCrossAxisCount(context),
+                crossAxisSpacing: 16.w,
+                mainAxisSpacing: 16.h,
+                childAspectRatio: 0.8,
+              ),
+              itemCount: controller.products.length,
+              itemBuilder: (context, index) {
+                final product = controller.products[index];
+                return _buildProductItem(product);
+              },
+            ),
           ),
         );
       }),

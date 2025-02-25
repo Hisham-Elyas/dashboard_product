@@ -6,7 +6,7 @@ import '../models/product.dart';
 class ProductController extends GetxController {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
   final RxList<Product> products = <Product>[].obs;
-  var isLoading = false.obs;
+  final RxBool isLoading = true.obs; // Loading state
 
   @override
   void onInit() {
@@ -15,16 +15,17 @@ class ProductController extends GetxController {
   }
 
   void fetchProducts() {
-    isLoading(true);
-    try {
-      firestore.collection('products').snapshots().listen((snapshot) {
-        products.value = snapshot.docs
-            .map((doc) => Product.fromJson(doc.data(), doc.id))
-            .toList();
-      });
-    } finally {
-      isLoading(false);
-    }
+    firestore.collection('products').snapshots().listen((snapshot) {
+      products.value = snapshot.docs
+          .map((doc) => Product.fromJson(doc.data(), doc.id))
+          .toList();
+      isLoading.value = false; // Data loaded, stop showing loading
+    });
+    products.sort(
+      (a, b) {
+        return a.price.compareTo(b.price);
+      },
+    );
   }
 
   Future<void> addProduct(Product product) async {

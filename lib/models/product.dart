@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 class Product {
   String? id;
   String name;
@@ -30,5 +31,30 @@ class Product {
       'image': image,
       'detail': detail,
     };
+  }
+
+  @override
+  bool operator ==(covariant Product other) {
+    if (identical(this, other)) return true;
+
+    return other.id == id &&
+        other.name == name &&
+        other.price == price &&
+        other.image == image &&
+        other.detail == detail;
+  }
+
+  @override
+  int get hashCode {
+    return id.hashCode ^
+        name.hashCode ^
+        price.hashCode ^
+        image.hashCode ^
+        detail.hashCode;
+  }
+
+  @override
+  String toString() {
+    return 'Product(id: $id, name: $name, price: $price, image: $image, detail: $detail)';
   }
 }
