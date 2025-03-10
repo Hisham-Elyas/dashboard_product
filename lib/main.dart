@@ -1,33 +1,22 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:url_strategy/url_strategy.dart';
 
-import 'firebase_options.dart';
-import 'views/dashboard_view.dart';
+import 'app.dart';
 
-void main() async {
+/// Entry point of Flutter App
+Future<void> main() async {
+  // Ensure that widgets are initialized
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  runApp(const MyApp());
-}
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  // Initialize GetX Local Storage
+  GetStorage.init();
 
-  @override
-  Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      // Use your design dimensions here
-      designSize: const Size(1440, 1024),
+  // Remove # sign from url
+  setPathUrlStrategy();
 
-      builder: (_, child) => GetMaterialApp(
-        title: 'Flutter Web Dashboard',
-        debugShowCheckedModeBanner: false,
-        home: DashboardView(),
-      ),
-    );
-  }
+  // Initialize Firebase & Authentication Repository
+
+  // Main App Starts here...
+  runApp(const App());
 }
