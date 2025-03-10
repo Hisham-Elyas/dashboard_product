@@ -12,6 +12,7 @@ import '../futures/shop/screens/occasions/create_occasions/create_occasions.dart
 import '../futures/shop/screens/occasions/edit_occasions/edit_occasions.dart';
 import '../futures/shop/screens/orders/orders.dart';
 import '../futures/shop/screens/products/all_products/products.dart';
+import '../futures/shop/screens/products/create_products/create_products.dart';
 import 'routes.dart';
 
 class HAppRoutes {
@@ -50,6 +51,12 @@ class HAppRoutes {
     // Products
 
     GetPage(name: HRoutes.products, page: () => const ProductsScreen()),
+    GetPage(
+        name: HRoutes.createProducts,
+        page: () => const CreateProductsScreen()), // create Products
+    // GetPage(
+    //     name: HRoutes.editProducts,
+    //     page: () => const EditOccasionsScreen()), // edit Products
 
     // Orders
     GetPage(name: HRoutes.orders, page: () => const OrdersScreen()),
