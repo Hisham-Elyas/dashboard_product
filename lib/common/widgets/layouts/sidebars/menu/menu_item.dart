@@ -26,34 +26,34 @@ class MenuItem extends StatelessWidget {
           : menuController.changeHoverItemTo(""),
       child: Obx(
         () => Padding(
-          padding: const EdgeInsets.symmetric(vertical: TSizes.xs),
+          padding: const EdgeInsets.symmetric(vertical: HSizes.xs),
           child: Container(
             decoration: BoxDecoration(
                 color: menuController.isHovering(route) ||
                         menuController.isActive(route)
-                    ? TColors.primary
+                    ? HColors.primary
                     : Colors.transparent,
-                borderRadius: BorderRadius.circular(TSizes.cardRadiusMd)),
+                borderRadius: BorderRadius.circular(HSizes.cardRadiusMd)),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
                   padding: const EdgeInsets.only(
-                      left: TSizes.lg,
-                      bottom: TSizes.md,
-                      right: TSizes.md,
-                      top: TSizes.md),
+                      left: HSizes.lg,
+                      bottom: HSizes.md,
+                      right: HSizes.md,
+                      top: HSizes.md),
                   child: menuController.isActive(route)
                       ? Icon(
                           icon,
-                          color: TColors.white,
+                          color: HColors.white,
                           size: 22,
                         )
                       : Icon(
                           icon,
                           color: menuController.isHovering(route)
-                              ? TColors.white
-                              : TColors.darkGrey,
+                              ? HColors.white
+                              : HColors.darkGrey,
                           size: 22,
                         ),
                 ),
@@ -65,7 +65,7 @@ class MenuItem extends StatelessWidget {
                       style: Theme.of(context)
                           .textTheme
                           .bodyMedium!
-                          .apply(color: TColors.white),
+                          .apply(color: HColors.white),
                     ),
                   )
                 else
@@ -75,7 +75,7 @@ class MenuItem extends StatelessWidget {
                       style: Theme.of(context)
                           .textTheme
                           .bodyMedium!
-                          .apply(color: TColors.darkGrey),
+                          .apply(color: HColors.darkGrey),
                     ),
                   )
               ],

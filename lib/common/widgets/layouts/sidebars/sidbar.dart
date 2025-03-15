@@ -5,7 +5,7 @@ import '../../../../routes/routes.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/image_strings.dart';
 import '../../../../utils/constants/sizes.dart';
-import '../../images/t_circular_image.dart';
+import '../../images/h_circular_image.dart';
 import 'menu/menu_item.dart';
 
 class HSidbar extends StatelessWidget {
@@ -17,21 +17,21 @@ class HSidbar extends StatelessWidget {
       shape: const BeveledRectangleBorder(),
       child: Container(
         decoration: const BoxDecoration(
-            color: TColors.white,
+            color: HColors.white,
             border: Border(
-              right: BorderSide(color: TColors.grey, width: 1),
+              right: BorderSide(color: HColors.grey, width: 1),
             )),
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const TCircularImage(
+              const HCircularImage(
                 width: 100,
-                image: TImages.darkAppLogo,
+                image: HImages.darkAppLogo,
                 backgroundColor: Colors.transparent,
               ),
-              const SizedBox(height: TSizes.spaceBtwItems),
+              const SizedBox(height: HSizes.spaceBtwItems),
               Padding(
-                padding: const EdgeInsets.all(TSizes.md),
+                padding: const EdgeInsets.all(HSizes.md),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,

@@ -16,10 +16,10 @@ class HResponsiveWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        if (constraints.maxWidth >= TSizes.desktopScreenSize) {
+        if (constraints.maxWidth >= HSizes.desktopScreenSize) {
           return desktop;
-        } else if (constraints.maxWidth < TSizes.desktopScreenSize &&
-            constraints.maxWidth >= TSizes.tabletScreenSize) {
+        } else if (constraints.maxWidth < HSizes.desktopScreenSize &&
+            constraints.maxWidth >= HSizes.tabletScreenSize) {
           return tablet;
         } else {
           return mobile;

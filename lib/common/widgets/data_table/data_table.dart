@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/sizes.dart';
 
-class TDataTable extends StatelessWidget {
-  const TDataTable({
+class HDataTable extends StatelessWidget {
+  const HDataTable({
     super.key,
     required this.columns,
     required this.rows,
@@ -34,15 +34,19 @@ class TDataTable extends StatelessWidget {
         // Set the horizontal margin of the data table
         horizontalMargin: 12,
         // Set the color of the heading row
-        headingRowColor: WidgetStateProperty.resolveWith((states) => TColors.primary),
+        headingRowColor:
+            WidgetStateProperty.resolveWith((states) => HColors.primary),
         // Set the decoration for the data table
         decoration: const BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(TSizes.borderRadiusMd)),
+          borderRadius:
+              BorderRadius.all(Radius.circular(HSizes.borderRadiusMd)),
         ),
         // Set the decoration for the heading row of the data table
         headingRowDecoration: const BoxDecoration(
-          borderRadius: BorderRadius.only(topLeft: Radius.circular(TSizes.borderRadiusMd), topRight: Radius.circular(TSizes.borderRadiusMd)),
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(HSizes.borderRadiusMd),
+              topRight: Radius.circular(HSizes.borderRadiusMd)),
         ),
       ),
     );

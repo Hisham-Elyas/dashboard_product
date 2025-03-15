@@ -4,8 +4,8 @@ import 'package:shimmer/shimmer.dart';
 import '../../../utils/constants/colors.dart';
 import '../../../utils/helpers/helper_functions.dart';
 
-class TShimmerEffect extends StatelessWidget {
-  const TShimmerEffect({
+class HShimmerEffect extends StatelessWidget {
+  const HShimmerEffect({
     super.key,
     required this.width,
     required this.height,
@@ -18,7 +18,7 @@ class TShimmerEffect extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dark = THelperFunctions.isDarkMode(context);
+    final dark = HHelperFunctions.isDarkMode(context);
     return Shimmer.fromColors(
       baseColor: dark ? Colors.grey[850]! : Colors.grey[300]!,
       highlightColor: dark ? Colors.grey[700]! : Colors.grey[100]!,
@@ -26,7 +26,7 @@ class TShimmerEffect extends StatelessWidget {
         width: width,
         height: height,
         decoration: BoxDecoration(
-          color: color ?? (dark ? TColors.darkerGrey : TColors.white),
+          color: color ?? (dark ? HColors.darkerGrey : HColors.white),
           borderRadius: BorderRadius.circular(radius),
         ),
       ),

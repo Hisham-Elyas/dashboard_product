@@ -3,16 +3,16 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
-import '../../../../../../common/widgets/icons/t_circular_icon.dart';
-import '../../../../../../common/widgets/images/t_circular_image.dart';
 import '../../../../../../utils/constants/colors.dart';
 import '../../../../../../utils/constants/enums.dart';
 import '../../../../../../utils/constants/sizes.dart';
-import 't_rounded_image.dart';
+import '../icons/t_circular_icon.dart';
+import 'h_circular_image.dart';
+import 'h_rounded_image.dart';
 
 /// Widget for uploading images with optional editing functionality
-class TImageUploader extends StatelessWidget {
-  const TImageUploader({
+class HImageUploader extends StatelessWidget {
+  const HImageUploader({
     super.key,
     this.image,
     this.onIconButtonPressed,
@@ -70,21 +70,21 @@ class TImageUploader extends StatelessWidget {
       children: [
         // Display the image in either circular or rounded shape
         circular
-            ? TCircularImage(
+            ? HCircularImage(
                 image: image,
                 width: width,
                 height: height,
                 imageType: imageType,
                 memoryImage: memoryImage,
-                backgroundColor: TColors.primaryBackground,
+                backgroundColor: HColors.primaryBackground,
               )
-            : TRoundedImage(
+            : HRoundedImage(
                 image: image,
                 width: width,
                 height: height,
                 imageType: imageType,
                 memoryImage: memoryImage,
-                backgroundColor: TColors.primaryBackground,
+                backgroundColor: HColors.primaryBackground,
               ),
         // Display the edit icon button on top of the image
         Positioned(
@@ -92,12 +92,12 @@ class TImageUploader extends StatelessWidget {
           left: left,
           right: right,
           bottom: bottom,
-          child: TCircularIcon(
+          child: HCircularIcon(
             icon: icon,
-            size: TSizes.md,
+            size: HSizes.md,
             color: Colors.white,
             onPressed: onIconButtonPressed,
-            backgroundColor: TColors.primary.withOpacity(0.9),
+            backgroundColor: HColors.primary.withOpacity(0.9),
           ),
         )
       ],

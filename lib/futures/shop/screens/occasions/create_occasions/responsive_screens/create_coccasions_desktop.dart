@@ -13,7 +13,7 @@ class CreateOccasionsDesktopScreen extends StatelessWidget {
     return const Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-            padding: EdgeInsets.all(TSizes.defaultSpace),
+            padding: EdgeInsets.all(HSizes.defaultSpace),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -22,7 +22,7 @@ class CreateOccasionsDesktopScreen extends StatelessWidget {
                   heading: "Create Occasions",
                   breadcrumbsItems: [HRoutes.occasions, "Create Occasions"],
                 ),
-                SizedBox(height: TSizes.spaceBtwItems),
+                SizedBox(height: HSizes.spaceBtwItems),
 
                 /// form
                 CreateOccasionsForm(),

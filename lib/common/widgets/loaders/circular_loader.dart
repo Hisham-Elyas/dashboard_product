@@ -4,16 +4,16 @@ import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/sizes.dart';
 
 /// A circular loader widget with customizable foreground and background colors.
-class TCircularLoader extends StatelessWidget {
-  /// Default constructor for the TCircularLoader.
+class HCircularLoader extends StatelessWidget {
+  /// Default constructor for the HCircularLoader.
   ///
   /// Parameters:
   ///   - foregroundColor: The color of the circular loader.
   ///   - backgroundColor: The background color of the circular loader.
-  const TCircularLoader({
+  const HCircularLoader({
     super.key,
-    this.foregroundColor = TColors.white,
-    this.backgroundColor = TColors.primary,
+    this.foregroundColor = HColors.white,
+    this.backgroundColor = HColors.primary,
   });
 
   final Color? foregroundColor;
@@ -22,10 +22,14 @@ class TCircularLoader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(TSizes.lg),
-      decoration: BoxDecoration(color: backgroundColor, shape: BoxShape.circle), // Circular background
+      padding: const EdgeInsets.all(HSizes.lg),
+      decoration: BoxDecoration(
+          color: backgroundColor,
+          shape: BoxShape.circle), // Circular background
       child: Center(
-        child: CircularProgressIndicator(color: foregroundColor, backgroundColor: Colors.transparent), // Circular loader
+        child: CircularProgressIndicator(
+            color: foregroundColor,
+            backgroundColor: Colors.transparent), // Circular loader
       ),
     );
   }

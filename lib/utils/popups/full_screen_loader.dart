@@ -7,7 +7,7 @@ import '../constants/colors.dart';
 import '../helpers/helper_functions.dart';
 
 /// A utility class for managing a full-screen loading dialog.
-class TFullScreenLoader {
+class HFullScreenLoader {
   /// Open a full-screen loading dialog with a given text and animation.
   /// This method doesn't return anything.
   ///
@@ -23,15 +23,15 @@ class TFullScreenLoader {
       builder: (_) => PopScope(
         canPop: false, // Disable popping with the back button
         child: Container(
-          color: THelperFunctions.isDarkMode(Get.context!)
-              ? TColors.dark
-              : TColors.white,
+          color: HHelperFunctions.isDarkMode(Get.context!)
+              ? HColors.dark
+              : HColors.white,
           width: double.infinity,
           height: double.infinity,
           child: Column(
             children: [
               const SizedBox(height: 250), // Adjust the spacing as needed
-              TAnimationLoaderWidget(text: text, animation: animation),
+              HAnimationLoaderWidget(text: text, animation: animation),
             ],
           ),
         ),
@@ -43,7 +43,7 @@ class TFullScreenLoader {
     Get.defaultDialog(
       title: '',
       onWillPop: () async => false,
-      content: const TCircularLoader(),
+      content: const HCircularLoader(),
       backgroundColor: Colors.transparent,
     );
   }

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../../utils/constants/colors.dart';
 
 /// A circular container widget with optional child, border, and styling.
-class TCircularContainer extends StatelessWidget {
+class HCircularContainer extends StatelessWidget {
   /// Create a circular container.
   ///
   /// Parameters:
@@ -16,7 +16,7 @@ class TCircularContainer extends StatelessWidget {
   ///   - showBorder: Whether to show a border around the container.
   ///   - backgroundColor: The background color of the container.
   ///   - borderColor: The color of the border (if [showBorder] is true).
-  const TCircularContainer({
+  const HCircularContainer({
     super.key,
     this.child,
     this.margin,
@@ -25,8 +25,8 @@ class TCircularContainer extends StatelessWidget {
     this.height = 400,
     this.radius = 400,
     this.showBorder = false,
-    this.backgroundColor = TColors.white,
-    this.borderColor = TColors.borderPrimary,
+    this.backgroundColor = HColors.white,
+    this.borderColor = HColors.borderPrimary,
   });
 
   final Widget? child;

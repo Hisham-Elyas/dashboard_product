@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
-class TColors {
+class HColors {
   // App theme colors
-  static const Color primary = Color(0xFF4b68ff);
-  static const Color secondary = Color(0xFFFFE24B);
-  static const Color accent = Color(0xFFb0c7ff);
+  static const Color primary = Color(0xFFae614d);
+  static const Color secondary = Color(0xFFf0e1cc);
+  static const Color accent = Color(0xFFf0e5d6);
+  // static const Color primary = Color(0xFF4b68ff);
+  // static const Color secondary = Color(0xFFFFE24B);
+  // static const Color accent = Color(0xFFb0c7ff);
 
   // Icon colors
   static const Color iconPrimary = Color(0xFF8D8D8D);
@@ -21,7 +24,7 @@ class TColors {
 
   // Background Container colors
   static const Color lightContainer = Color(0xFFF6F6F6);
-  static Color darkContainer = TColors.white.withOpacity(0.1);
+  static Color darkContainer = HColors.white.withOpacity(0.1);
 
   // Button colors
   static const Color buttonPrimary = Color(0xFF4b68ff);
@@ -46,8 +49,4 @@ class TColors {
   static const Color softGrey = Color(0xFFF4F4F4);
   static const Color lightGrey = Color(0xFFF9F9F9);
   static const Color white = Color(0xFFFFFFFF);
-
 }
-
-
-

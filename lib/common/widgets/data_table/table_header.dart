@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../../../utils/constants/colors.dart';
 import '../../../utils/device/device_utility.dart';
+import '../containers/rounded_container.dart';
 
 class HTableHeader extends StatelessWidget {
   final void Function()? onPressed;
@@ -19,15 +21,24 @@ class HTableHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(children: [
       Expanded(
-          flex: TDeviceUtils.isDesktopScreen(context) ? 3 : 1,
+          flex: HDeviceUtils.isDesktopScreen(context) ? 3 : 1,
           child: Row(children: [
-            SizedBox(
-              width: 200,
-              child: ElevatedButton(
-                onPressed: onPressed,
-                child: Text(buttonText),
-              ),
-            ),
+            HDeviceUtils.isMobileScreen(context)
+                ? HRoundedContainer(
+                    padding: const EdgeInsets.all(0),
+                    backgroundColor: HColors.primary,
+                    child: IconButton(
+                      onPressed: onPressed,
+                      icon: const Icon(Iconsax.add),
+                    ),
+                  )
+                : SizedBox(
+                    width: 200,
+                    child: ElevatedButton(
+                      onPressed: onPressed,
+                      child: Text(buttonText),
+                    ),
+                  ),
           ])),
       Expanded(
           child: TextField(

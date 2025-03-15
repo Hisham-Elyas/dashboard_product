@@ -6,44 +6,51 @@ import 'package:iconsax/iconsax.dart';
 import '../../../../../../../routes/routes.dart';
 import '../../../../../../../utils/constants/enums.dart';
 import '../../../../../../common/widgets/icons/table_action_icon_buttons.dart';
-import '../../../../../../common/widgets/images/t_rounded_image.dart';
+import '../../../../../../common/widgets/images/h_rounded_image.dart';
 import '../../../../../../utils/constants/colors.dart';
-import '../../../../../../utils/constants/image_strings.dart';
 import '../../../../../../utils/constants/sizes.dart';
+import '../../../../controller/products/products_controller.dart';
 
 class ProductsRows extends DataTableSource {
+  final controller = ProductsController.instance;
   @override
   DataRow? getRow(int index) {
+    final product = controller.filteredItems[index];
     return DataRow2(cells: [
       DataCell(Row(
         children: [
-          const TRoundedImage(
-            width: 50,
-            height: 50,
-            padding: TSizes.sm,
-            image: TImages.defaultImage,
-            imageType: ImageType.asset,
-            borderRadius: TSizes.borderRadiusMd,
-            backgroundColor: TColors.primaryBackground,
+          HRoundedImage(
+            width: 80,
+            height: 80,
+            padding: HSizes.sm,
+            image: product.imageUrl,
+            imageType: ImageType.network,
+            borderRadius: HSizes.borderRadiusMd,
+            backgroundColor: HColors.primaryBackground,
           ),
-          const SizedBox(width: TSizes.spaceBtwItems),
+          const SizedBox(width: HSizes.spaceBtwItems),
           Expanded(
-            child: Text('Name',
+            child: Text(product.name,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: Theme.of(Get.context!)
                     .textTheme
                     .bodyLarge!
-                    .apply(color: TColors.primary)),
+                    .apply(color: HColors.primary)),
           )
         ],
       )),
-      const DataCell(Icon(Iconsax.eye, color: TColors.primary)),
-      DataCell(TTableActionButtons(
+      DataCell(Text(product.price.toStringAsFixed(2))),
+      DataCell(product.isActive
+          ? const Icon(Iconsax.eye, color: HColors.primary)
+          : const Icon(Iconsax.eye_slash)),
+      DataCell(HTableActionButtons(
         onEditPressed: () {
-          Get.toNamed(HRoutes.editProducts);
+          Get.toNamed(HRoutes.editProducts, arguments: product);
         },
-        onDeletePressed: () {},
+        onDeletePressed: () {
+          controller.confirmAndDeleteItem(product);
+        },
       )),
     ]);
   }
@@ -52,7 +59,7 @@ class ProductsRows extends DataTableSource {
   bool get isRowCountApproximate => false;
 
   @override
-  int get rowCount => 10;
+  int get rowCount => controller.filteredItems.length;
 
   @override
   int get selectedRowCount => 0;

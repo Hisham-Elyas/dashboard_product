@@ -6,6 +6,7 @@ import 'routes/routes.dart';
 import 'routes/routes_observers.dart';
 import 'utils/constants/text_strings.dart';
 import 'utils/device/web_material_scroll.dart';
+import 'utils/helpers/network_manager.dart';
 import 'utils/theme/theme.dart';
 
 class App extends StatelessWidget {
@@ -17,12 +18,15 @@ class App extends StatelessWidget {
       navigatorObservers: [
         RouteObservers(),
       ],
-      title: TTexts.appName,
+      title: HTexts.appName,
       themeMode: ThemeMode.light,
-      theme: TAppTheme.lightTheme,
-      darkTheme: TAppTheme.darkTheme,
+      theme: HAppTheme.lightTheme,
+      darkTheme: HAppTheme.darkTheme,
       debugShowCheckedModeBanner: false,
       scrollBehavior: MyCustomScrollBehavior(),
+      initialBinding: BindingsBuilder(
+        () => Get.lazyPut(() => NetworkManager(), fenix: true),
+      ),
       getPages: HAppRoutes.pages,
       initialRoute: HRoutes.dashboard,
       unknownRoute: GetPage(

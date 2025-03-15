@@ -5,8 +5,8 @@ import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/sizes.dart';
 
 /// A widget for displaying an animated loading indicator with optional text and action button.
-class TAnimationLoaderWidget extends StatelessWidget {
-  /// Default constructor for the TAnimationLoaderWidget.
+class HAnimationLoaderWidget extends StatelessWidget {
+  /// Default constructor for the HAnimationLoaderWidget.
   ///
   /// Parameters:
   ///   - text: The text to be displayed below the animation.
@@ -14,13 +14,16 @@ class TAnimationLoaderWidget extends StatelessWidget {
   ///   - showAction: Whether to show an action button below the text.
   ///   - actionText: The text to be displayed on the action button.
   ///   - onActionPressed: Callback function to be executed when the action button is pressed.
-  const TAnimationLoaderWidget({
+  const HAnimationLoaderWidget({
     super.key,
     required this.text,
     required this.animation,
     this.showAction = false,
     this.actionText,
-    this.onActionPressed, this.height, this.width, this.style,
+    this.onActionPressed,
+    this.height,
+    this.width,
+    this.style,
   });
 
   final String text;
@@ -37,23 +40,29 @@ class TAnimationLoaderWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Lottie.asset(animation, height: height ?? MediaQuery.of(context).size.height * 0.5, width: width), // Display Lottie animation
-          const SizedBox(height: TSizes.defaultSpace),
+          Lottie.asset(animation,
+              height: height ?? MediaQuery.of(context).size.height * 0.5,
+              width: width), // Display Lottie animation
+          const SizedBox(height: HSizes.defaultSpace),
           Text(
             text,
             style: style ?? Theme.of(context).textTheme.bodyMedium,
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: TSizes.defaultSpace),
+          const SizedBox(height: HSizes.defaultSpace),
           showAction
               ? SizedBox(
                   width: 250,
                   child: OutlinedButton(
                     onPressed: onActionPressed,
-                    style: OutlinedButton.styleFrom(backgroundColor: TColors.dark),
+                    style:
+                        OutlinedButton.styleFrom(backgroundColor: HColors.dark),
                     child: Text(
                       actionText!,
-                      style: Theme.of(context).textTheme.bodyMedium!.apply(color: TColors.light),
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium!
+                          .apply(color: HColors.light),
                     ),
                   ),
                 )

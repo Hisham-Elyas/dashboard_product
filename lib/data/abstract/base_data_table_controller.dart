@@ -1,8 +1,9 @@
-import 'package:dashboard_product/utils/constants/sizes.dart';
-import 'package:dashboard_product/utils/popups/full_screen_loader.dart';
-import 'package:dashboard_product/utils/popups/loaders.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../utils/constants/sizes.dart';
+import '../../utils/popups/full_screen_loader.dart';
+import '../../utils/popups/loaders.dart';
 
 abstract class HBaseTableController<T> extends GetxController {
   RxBool isLoading = true.obs;
@@ -32,9 +33,9 @@ abstract class HBaseTableController<T> extends GetxController {
       filteredItems.assignAll(allItems);
       selectedRows.assignAll(List.generate(allItems.length, (index) => false));
     } catch (e) {
-      TFullScreenLoader.stopLoading();
+      HFullScreenLoader.stopLoading();
       isLoading.value = false;
-      TLoaders.errorSnackBar(title: "Oh Snap!", message: e.toString());
+      HLoaders.errorSnackBar(title: "Oh Snap!", message: e.toString());
     } finally {
       isLoading.value = false;
     }
@@ -43,6 +44,7 @@ abstract class HBaseTableController<T> extends GetxController {
   void searchQuery(String query) {
     filteredItems
         .assignAll(allItems.where((item) => containsSearchQuer(item, query)));
+    filteredItems.refresh();
   }
 
   void sortByProperty(
@@ -64,6 +66,7 @@ abstract class HBaseTableController<T> extends GetxController {
     allItems.add(item);
     filteredItems.add(item);
     selectedRows.assignAll(List.generate(allItems.length, (index) => false));
+    filteredItems.refresh();
   }
 
   void updateItemFromLists(T item) {
@@ -90,10 +93,10 @@ abstract class HBaseTableController<T> extends GetxController {
               onPressed: () async => await deteOnConfirm(item),
               style: OutlinedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(
-                      vertical: TSizes.buttonHeight / 2),
+                      vertical: HSizes.buttonHeight / 2),
                   shape: RoundedRectangleBorder(
                       borderRadius:
-                          BorderRadius.circular(TSizes.buttonRadius * 5))),
+                          BorderRadius.circular(HSizes.buttonRadius * 5))),
               child: const Text("Ok")),
         ),
         cancel: SizedBox(
@@ -102,25 +105,25 @@ abstract class HBaseTableController<T> extends GetxController {
               onPressed: () => Get.back(),
               style: OutlinedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(
-                      vertical: TSizes.buttonHeight / 2),
+                      vertical: HSizes.buttonHeight / 2),
                   shape: RoundedRectangleBorder(
                       borderRadius:
-                          BorderRadius.circular(TSizes.buttonRadius * 5))),
+                          BorderRadius.circular(HSizes.buttonRadius * 5))),
               child: const Text("Cancel")),
         ));
   }
 
   Future<void> deteOnConfirm(T item) async {
     try {
-      TFullScreenLoader.stopLoading();
-      TFullScreenLoader.popUpCircular();
+      HFullScreenLoader.stopLoading();
+      HFullScreenLoader.popUpCircular();
       await deleteItem(item);
       removeItemFormLists(item);
-      TFullScreenLoader.stopLoading();
-      TLoaders.successSnackBar(
+      HFullScreenLoader.stopLoading();
+      HLoaders.successSnackBar(
           title: "Item Deleted", message: "Your Item has Deleted");
     } catch (e) {
-      TLoaders.errorSnackBar(title: "Oh Snap!", message: e.toString());
+      HLoaders.errorSnackBar(title: "Oh Snap!", message: e.toString());
     }
   }
 }

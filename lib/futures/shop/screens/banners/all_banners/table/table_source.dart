@@ -4,33 +4,39 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../../../../common/widgets/icons/table_action_icon_buttons.dart';
-import '../../../../../../common/widgets/images/t_rounded_image.dart';
+import '../../../../../../common/widgets/images/h_rounded_image.dart';
 import '../../../../../../routes/routes.dart';
 import '../../../../../../utils/constants/colors.dart';
 import '../../../../../../utils/constants/enums.dart';
-import '../../../../../../utils/constants/image_strings.dart';
 import '../../../../../../utils/constants/sizes.dart';
+import '../../../../controller/banners/banners_controller.dart';
 
 class BannersRows extends DataTableSource {
+  final controller = BannersController.instance;
   @override
   DataRow? getRow(int index) {
+    final banner = controller.filteredItems[index];
     return DataRow2(cells: [
-      const DataCell(TRoundedImage(
+      DataCell(HRoundedImage(
         width: 180,
         height: 100,
-        padding: TSizes.sm,
-        image: TImages.banner1,
+        padding: HSizes.sm,
+        image: banner.imageUrl,
         imageType: ImageType.network,
-        borderRadius: TSizes.borderRadiusMd,
-        backgroundColor: TColors.primaryBackground,
+        borderRadius: HSizes.borderRadiusMd,
+        backgroundColor: HColors.primaryBackground,
       )),
-      const DataCell(Text('Shop')),
-      const DataCell(Icon(Iconsax.eye, color: TColors.primary)),
-      DataCell(TTableActionButtons(
+      DataCell(Text(banner.name)),
+      DataCell(banner.isActive
+          ? const Icon(Iconsax.eye, color: HColors.primary)
+          : const Icon(Iconsax.eye_slash)),
+      DataCell(HTableActionButtons(
         onEditPressed: () {
-          Get.toNamed(HRoutes.editBanner);
+          Get.toNamed(HRoutes.editBanner, arguments: banner);
         },
-        onDeletePressed: () {},
+        onDeletePressed: () {
+          controller.confirmAndDeleteItem(banner);
+        },
       )),
     ]);
   }
@@ -39,7 +45,7 @@ class BannersRows extends DataTableSource {
   bool get isRowCountApproximate => false;
 
   @override
-  int get rowCount => 10;
+  int get rowCount => controller.filteredItems.length;
 
   @override
   int get selectedRowCount => 0;

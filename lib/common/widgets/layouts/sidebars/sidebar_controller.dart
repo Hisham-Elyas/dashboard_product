@@ -17,7 +17,7 @@ class SidebarController extends GetxController {
   void menuOnTap(String route) {
     if (!isActive(route)) {
       changeActiveItemTo(route);
-      if (TDeviceUtils.isMobileScreen(Get.context!)) Get.back();
+      if (HDeviceUtils.isMobileScreen(Get.context!)) Get.back();
       Get.toNamed(route);
     }
   }

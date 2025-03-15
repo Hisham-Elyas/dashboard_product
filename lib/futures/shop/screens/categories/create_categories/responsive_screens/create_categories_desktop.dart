@@ -10,10 +10,10 @@ class CreatecategoriesDesktopScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-            padding: const EdgeInsets.all(TSizes.defaultSpace),
+            padding: EdgeInsets.all(HSizes.defaultSpace),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -22,7 +22,7 @@ class CreatecategoriesDesktopScreen extends StatelessWidget {
                   heading: "Create Category",
                   breadcrumbsItems: [HRoutes.categories, "Create Category"],
                 ),
-                SizedBox(height: TSizes.spaceBtwItems),
+                SizedBox(height: HSizes.spaceBtwItems),
 
                 /// form
                 CreateCategoryForm(),

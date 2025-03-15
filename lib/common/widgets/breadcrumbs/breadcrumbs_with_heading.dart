@@ -24,7 +24,7 @@ class HBreadcrumbsWithHeading extends StatelessWidget {
             InkWell(
               onTap: () => Get.offAllNamed(HRoutes.dashboard),
               child: Padding(
-                padding: EdgeInsets.all(TSizes.xs),
+                padding: const EdgeInsets.all(HSizes.xs),
                 child: Text("Dashboard",
                     style: Theme.of(context)
                         .textTheme
@@ -34,13 +34,13 @@ class HBreadcrumbsWithHeading extends StatelessWidget {
             ),
             for (int i = 0; i < breadcrumbsItems.length; i++)
               Row(children: [
-                Text('/'),
+                const Text('/'),
                 InkWell(
                   onTap: i == breadcrumbsItems.length - 1
                       ? null
                       : () => Get.offNamed(breadcrumbsItems[i]),
                   child: Padding(
-                    padding: EdgeInsets.all(TSizes.xs),
+                    padding: const EdgeInsets.all(HSizes.xs),
                     child: Text(
                         i == breadcrumbsItems.length - 1
                             ? breadcrumbsItems[i].capitalize.toString()
@@ -54,14 +54,15 @@ class HBreadcrumbsWithHeading extends StatelessWidget {
               ])
           ],
         ),
-        SizedBox(height: TSizes.spaceBtwSections),
+        const SizedBox(height: HSizes.spaceBtwSections),
         Row(
           children: [
             if (returnToPreviousScreen)
               IconButton(
-                  onPressed: () => Get.back(), icon: Icon(Iconsax.arrow_left)),
+                  onPressed: () => Get.back(),
+                  icon: const Icon(Iconsax.arrow_left)),
             if (returnToPreviousScreen)
-              const SizedBox(width: TSizes.spaceBtwItems),
+              const SizedBox(width: HSizes.spaceBtwItems),
             HPageHeading(heading: heading),
           ],
         )

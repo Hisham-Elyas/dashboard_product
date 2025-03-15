@@ -1,25 +1,24 @@
 import 'package:get_storage/get_storage.dart';
 
-class TLocalStorage {
+class HLocalStorage {
   late final GetStorage _storage;
 
   // Singleton instance
-  static TLocalStorage? _instance;
+  static HLocalStorage? _instance;
 
-  TLocalStorage._internal();
+  HLocalStorage._internal();
 
   /// Create a named constructor to obtain an instance with a specific bucket name
-  factory TLocalStorage.instance() {
-    _instance ??= TLocalStorage._internal();
+  factory HLocalStorage.instance() {
+    _instance ??= HLocalStorage._internal();
     return _instance!;
   }
-
 
   /// Asynchronous initialization method
   static Future<void> init(String bucketName) async {
     // Very Important when you want to use Bucket's
     await GetStorage.init(bucketName);
-    _instance = TLocalStorage._internal();
+    _instance = HLocalStorage._internal();
     _instance!._storage = GetStorage(bucketName);
   }
 

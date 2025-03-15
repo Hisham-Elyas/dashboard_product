@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 
 import '../constants/sizes.dart';
 
-class TDeviceUtils {
+class HDeviceUtils {
   static void hideKeyboard(BuildContext context) {
     FocusScope.of(context).requestFocus(FocusNode());
   }
@@ -109,15 +109,15 @@ class TDeviceUtils {
   }
 
   static bool isDesktopScreen(BuildContext context) {
-    return MediaQuery.of(context).size.width >= TSizes.desktopScreenSize;
+    return MediaQuery.of(context).size.width >= HSizes.desktopScreenSize;
   }
 
   static bool isTabletScreen(BuildContext context) {
-    return MediaQuery.of(context).size.width >= TSizes.tabletScreenSize &&
-        MediaQuery.of(context).size.width < TSizes.desktopScreenSize;
+    return MediaQuery.of(context).size.width >= HSizes.tabletScreenSize &&
+        MediaQuery.of(context).size.width < HSizes.desktopScreenSize;
   }
 
   static bool isMobileScreen(BuildContext context) {
-    return MediaQuery.of(context).size.width < TSizes.tabletScreenSize;
+    return MediaQuery.of(context).size.width < HSizes.tabletScreenSize;
   }
 }

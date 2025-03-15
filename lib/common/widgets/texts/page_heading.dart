@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
-
-class TPageHeading extends StatelessWidget {
-  const TPageHeading({
-    super.key,required this.heading,  this.rightSideWidget,
+class HPageHeading extends StatelessWidget {
+  const HPageHeading({
+    super.key,
+    required this.heading,
+    this.rightSideWidget,
   });
 
   final String heading;

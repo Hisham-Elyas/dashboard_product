@@ -4,8 +4,8 @@ import 'package:iconsax/iconsax.dart';
 import '../../../utils/constants/colors.dart';
 
 /// Widget for displaying action buttons for table rows
-class TTableActionButtons extends StatelessWidget {
-  const TTableActionButtons({
+class HTableActionButtons extends StatelessWidget {
+  const HTableActionButtons({
     super.key,
     this.view = false,
     this.edit = true,
@@ -40,17 +40,17 @@ class TTableActionButtons extends StatelessWidget {
         if (view)
           IconButton(
             onPressed: onViewPressed,
-            icon: const Icon(Iconsax.eye, color: TColors.darkerGrey),
+            icon: const Icon(Iconsax.eye, color: HColors.darkerGrey),
           ),
         if (edit)
           IconButton(
             onPressed: onEditPressed,
-            icon: const Icon(Iconsax.pen_add, color: TColors.primary),
+            icon: const Icon(Iconsax.pen_add, color: HColors.primary),
           ),
         if (delete)
           IconButton(
             onPressed: onDeletePressed,
-            icon: const Icon(Iconsax.trash, color: TColors.error),
+            icon: const Icon(Iconsax.trash, color: HColors.error),
           ),
       ],
     );

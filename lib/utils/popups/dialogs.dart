@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
-class TDialogs {
+class HDialogs {
   static defaultDialog({
     required BuildContext context,
     String title = 'Removal Confirmation',
-    String content = 'Removing this data will delete all related data. Are you sure?',
+    String content =
+        'Removing this data will delete all related data. Are you sure?',
     String cancelText = 'Cancel',
     String confirmText = 'Remove',
     Function()? onCancel,
