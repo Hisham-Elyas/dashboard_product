@@ -138,4 +138,10 @@ class DashboardController extends GetxController {
       totalAmount[status] = totalAmount[status]! + order.totalAmount;
     }
   }
+
+  @override
+  void onInit() {
+    _calculateOrderStatusCount();
+    super.onInit();
+  }
 }
