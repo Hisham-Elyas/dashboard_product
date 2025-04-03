@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../common/widgets/layouts/templates/site_layout.dart';
+import '../../../../../common/widgets/layouts/templates/site_layout.dart';
 import 'responsive_screens/orders_desktop.dart';
 
 class OrdersScreen extends StatelessWidget {

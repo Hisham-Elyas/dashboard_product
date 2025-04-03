@@ -10,7 +10,7 @@ import '../futures/shop/screens/dashboard/dashboard.dart';
 import '../futures/shop/screens/occasions/all_occasions/occasions.dart';
 import '../futures/shop/screens/occasions/create_occasions/create_occasions.dart';
 import '../futures/shop/screens/occasions/edit_occasions/edit_occasions.dart';
-import '../futures/shop/screens/orders/orders.dart';
+import '../futures/shop/screens/orders/all_orders/orders.dart';
 import '../futures/shop/screens/products/all_products/products.dart';
 import '../futures/shop/screens/products/create_products/create_products.dart';
 import '../futures/shop/screens/products/edit_products/edit_products.dart';

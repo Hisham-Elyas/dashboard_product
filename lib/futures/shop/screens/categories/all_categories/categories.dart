@@ -6,8 +6,7 @@ import 'responsive_screens/categories_desktop.dart';
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({super.key});
 
-  @override
-  Widget build(BuildContext context) {
+  @override  Widget build(BuildContext context) {
     return const HSiteTemplate(
       desktop: CategoriesDesktopScreen(),
     );
