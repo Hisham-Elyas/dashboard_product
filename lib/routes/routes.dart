@@ -1,6 +1,8 @@
 class HRoutes {
   static const String root = '/';
   static const String login = '/login';
+  static const String forgotPassword = '/forgot-password';
+  static const String resetPassword = '/reset-password';
   static const String dashboard = '/dashboard';
   // banners
   static const String banners = '/banners';

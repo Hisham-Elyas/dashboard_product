@@ -8,6 +8,22 @@ class OrdersController extends HBaseTableController<OrderModel> {
   static OrdersController get instance => Get.find();
   final _ordersRepo = Get.put(OrdersRepo());
 
+  void listenToOrdersStream() {
+    isLoading.value = true;
+    _ordersRepo.getAllOrdersStream().listen((orders) {
+      allItems.assignAll(orders);
+      filteredItems.assignAll(orders);
+      selectedRows.assignAll(List.generate(orders.length, (index) => false));
+      isLoading.value = false;
+    });
+  }
+
+  @override
+  void onInit() {
+    listenToOrdersStream();
+    super.onInit();
+  }
+
   @override
   bool containsSearchQuer(OrderModel item, String query) {
     return item.id.toLowerCase().contains(query.toLowerCase());

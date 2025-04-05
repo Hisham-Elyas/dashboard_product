@@ -1,5 +1,8 @@
 import 'package:get/get.dart';
 
+import '../futures/auth/screens/forgot_password/forgot_password.dart';
+import '../futures/auth/screens/login/login.dart';
+import '../futures/auth/screens/reset_password/reset_password.dart';
 import '../futures/shop/screens/banners/all_banners/banners.dart';
 import '../futures/shop/screens/banners/create_banner/create_banner.dart';
 import '../futures/shop/screens/banners/edit_banner/edit_banners.dart';
@@ -15,51 +18,97 @@ import '../futures/shop/screens/products/all_products/products.dart';
 import '../futures/shop/screens/products/create_products/create_products.dart';
 import '../futures/shop/screens/products/edit_products/edit_products.dart';
 import 'routes.dart';
+import 'routes_middleware.dart';
 
 class HAppRoutes {
   static final List<GetPage<dynamic>> pages = [
-    GetPage(name: HRoutes.dashboard, page: () => const DashboardScreen()),
+    GetPage(name: HRoutes.login, page: () => const LoginScreen()),
+    GetPage(
+        name: HRoutes.forgotPassword, page: () => const ForgotPasswordScreen()),
+    GetPage(
+        name: HRoutes.resetPassword, page: () => const ResetPasswordScreen()),
+    GetPage(
+      name: HRoutes.dashboard,
+      page: () => const DashboardScreen(),
+      middlewares: [HRoutesMiddleware()],
+    ),
 
     // Banners
-    GetPage(name: HRoutes.banners, page: () => const BannersScreen()),
     GetPage(
-        name: HRoutes.createBanner,
-        page: () => const CreateBannersScreen()), // create banner
+      name: HRoutes.banners,
+      page: () => const BannersScreen(),
+      middlewares: [HRoutesMiddleware()],
+    ),
     GetPage(
-        name: HRoutes.editBanner,
-        page: () => const EditBannersScreen()), // edit banner
+      name: HRoutes.createBanner,
+      page: () => const CreateBannersScreen(),
+      middlewares: [HRoutesMiddleware()],
+    ), // create banner
+    GetPage(
+      name: HRoutes.editBanner,
+      page: () => const EditBannersScreen(),
+      middlewares: [HRoutesMiddleware()],
+    ), // edit banner
 
     // Categories
 
-    GetPage(name: HRoutes.categories, page: () => const CategoriesScreen()),
     GetPage(
-        name: HRoutes.createCategories,
-        page: () => const CreateCategoriesScreen()), // create categories
+      name: HRoutes.categories,
+      page: () => const CategoriesScreen(),
+      middlewares: [HRoutesMiddleware()],
+    ),
     GetPage(
-        name: HRoutes.editCategories,
-        page: () => const EditCategoriesScreen()), // edit categories
+      name: HRoutes.createCategories,
+      page: () => const CreateCategoriesScreen(),
+      middlewares: [HRoutesMiddleware()],
+    ), // create categories
+    GetPage(
+      name: HRoutes.editCategories,
+      page: () => const EditCategoriesScreen(),
+      middlewares: [HRoutesMiddleware()],
+    ), // edit categories
 
     // Occasions
 
-    GetPage(name: HRoutes.occasions, page: () => const OccasionsScreen()),
     GetPage(
-        name: HRoutes.createOccasions,
-        page: () => const CreateOccasionsScreen()), // create Occasions
+      name: HRoutes.occasions,
+      page: () => const OccasionsScreen(),
+      middlewares: [HRoutesMiddleware()],
+    ),
     GetPage(
-        name: HRoutes.editOccasions,
-        page: () => const EditOccasionsScreen()), // edit Occasions
+      name: HRoutes.createOccasions,
+      page: () => const CreateOccasionsScreen(),
+      middlewares: [HRoutesMiddleware()],
+    ), // create Occasions
+    GetPage(
+      name: HRoutes.editOccasions,
+      page: () => const EditOccasionsScreen(),
+      middlewares: [HRoutesMiddleware()],
+    ), // edit Occasions
 
     // Products
 
-    GetPage(name: HRoutes.products, page: () => const ProductsScreen()),
     GetPage(
-        name: HRoutes.createProducts,
-        page: () => const CreateProductsScreen()), // create Products
+      name: HRoutes.products,
+      page: () => const ProductsScreen(),
+      middlewares: [HRoutesMiddleware()],
+    ),
     GetPage(
-        name: HRoutes.editProducts,
-        page: () => const EditProductsScreen()), // edit Products
+      name: HRoutes.createProducts,
+      page: () => const CreateProductsScreen(),
+      middlewares: [HRoutesMiddleware()],
+    ), // create Products
+    GetPage(
+      name: HRoutes.editProducts,
+      page: () => const EditProductsScreen(),
+      middlewares: [HRoutesMiddleware()],
+    ), // edit Products
 
     // Orders
-    GetPage(name: HRoutes.orders, page: () => const OrdersScreen()),
+    GetPage(
+      name: HRoutes.orders,
+      page: () => const OrdersScreen(),
+      middlewares: [HRoutesMiddleware()],
+    ),
   ];
 }

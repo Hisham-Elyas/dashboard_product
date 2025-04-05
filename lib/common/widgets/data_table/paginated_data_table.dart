@@ -20,6 +20,9 @@ class HPaginatedDataTable extends StatelessWidget {
     this.dataRowHeight = HSizes.xl * 2,
     this.sortAscending = true,
     this.minWidth = 1000,
+    this.emptyShowAction = false,
+    this.emptyActionText = 'Reload',
+    this.emptyOnActionPressed,
   });
 
   /// Whether to sort the DataTable in ascending or descending order.
@@ -48,6 +51,10 @@ class HPaginatedDataTable extends StatelessWidget {
 
   /// Minimum Width of the entire DataTable.
   final double? minWidth;
+
+  final bool emptyShowAction;
+  final String? emptyActionText;
+  final VoidCallback? emptyOnActionPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -78,6 +85,9 @@ class HPaginatedDataTable extends StatelessWidget {
           headingRowColor: WidgetStateProperty.resolveWith(
               (states) => HColors.primaryBackground),
           empty: HAnimationLoaderWidget(
+              actionText: emptyActionText,
+              onActionPressed: emptyOnActionPressed,
+              showAction: emptyShowAction,
               animation: HImages.packageAnimation,
               text: 'Nothing Found',
               height: 200,

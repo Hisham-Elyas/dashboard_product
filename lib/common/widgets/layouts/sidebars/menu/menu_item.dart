@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../../data/repositories/auth/auth_repo.dart';
+import '../../../../../routes/routes.dart';
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/sizes.dart';
 import '../sidebar_controller.dart';
@@ -20,7 +22,14 @@ class MenuItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final SidebarController menuController = Get.put(SidebarController());
     return InkWell(
-      onTap: () => menuController.menuOnTap(route),
+      onTap: () {
+        if (itemName == 'Logout') {
+          Get.put(AuthRepo()).signOut();
+          Get.offAllNamed(HRoutes.login);
+        } else {
+          menuController.menuOnTap(route);
+        }
+      },
       onHover: (hovering) => hovering
           ? menuController.changeHoverItemTo(route)
           : menuController.changeHoverItemTo(""),

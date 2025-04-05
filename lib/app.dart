@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'futures/auth/controllers/user_controller.dart';
 import 'routes/app_routes.dart';
 import 'routes/routes.dart';
 import 'routes/routes_observers.dart';
@@ -25,7 +26,10 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       scrollBehavior: MyCustomScrollBehavior(),
       initialBinding: BindingsBuilder(
-        () => Get.lazyPut(() => NetworkManager(), fenix: true),
+        () {
+          Get.lazyPut(() => NetworkManager(), fenix: true);
+          Get.put(UserController(), permanent: true);
+        },
       ),
       getPages: HAppRoutes.pages,
       initialRoute: HRoutes.dashboard,

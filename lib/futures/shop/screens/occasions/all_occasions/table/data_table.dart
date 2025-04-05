@@ -15,6 +15,10 @@ class OccasionsTable extends StatelessWidget {
     return Obx(() {
       Text(controller.filteredItems.length.toString());
       return HPaginatedDataTable(
+        emptyShowAction: true,
+        emptyOnActionPressed: () async {
+          await controller.fetchData();
+        },
         minWidth: 700,
         // tableHeight: 900,
         // dataRowHeight: 110,

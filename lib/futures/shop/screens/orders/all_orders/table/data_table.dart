@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../../common/widgets/data_table/paginated_data_table.dart';
-import '../../../../controller/occasion/occasion_controller.dart';
+import '../../../../controller/orders/orders_controller.dart';
 import 'table_source.dart';
 
 class OrdersTable extends StatelessWidget {
@@ -11,10 +11,15 @@ class OrdersTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(OccasionController());
+    final controller = Get.put(OrdersController());
     return Obx(() {
       Text(controller.filteredItems.length.toString());
       return HPaginatedDataTable(
+        emptyShowAction: true,
+        emptyOnActionPressed: () async {
+          await controller.fetchData();
+        },
+
         minWidth: 700,
         // tableHeight: 900,
         // dataRowHeight: 110,

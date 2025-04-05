@@ -1,12 +1,12 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:h_dashboard_store/common/widgets/containers/circular_container.dart';
-import 'package:h_dashboard_store/utils/helpers/helper_functions.dart';
 
 import '../../../../../common/widgets/breadcrumbs/breadcrumbs_with_heading.dart';
+import '../../../../../common/widgets/containers/circular_container.dart';
 import '../../../../../common/widgets/containers/rounded_container.dart';
 import '../../../../../utils/constants/sizes.dart';
+import '../../../../../utils/helpers/helper_functions.dart';
 import '../../../controller/dashboard/dashboard_controller.dart';
 
 class DashboardDesktopScreen extends StatelessWidget {
@@ -90,7 +90,10 @@ class DashboardDesktopScreen extends StatelessWidget {
                                         backgroundColor: HHelperFunctions
                                             .getOrderStatusColor(status),
                                       ),
-                                      Expanded(child: Text(" ${status.name}")),
+                                      const SizedBox(width: HSizes.md),
+                                      Expanded(
+                                          child: Text(
+                                              " ${status.name.capitalize}")),
                                     ],
                                   )),
                                   DataCell(Text(count.toString())),

@@ -1,9 +1,14 @@
-// import 'package:flutter/material.dart';
-// import 'package:get/get.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-// class HRoutesMiddleware extends GetMiddleware {
-//   @override
-//   RouteSettings? redirect(String? route) {
-//     throw UnimplementedError();
-//   }
-// }
+import '../data/repositories/auth/auth_repo.dart';
+import 'routes.dart';
+
+class HRoutesMiddleware extends GetMiddleware {
+  @override
+  RouteSettings? redirect(String? route) {
+    return AuthRepo.instance.isAuthenticated
+        ? null
+        : const RouteSettings(name: HRoutes.login);
+  }
+}

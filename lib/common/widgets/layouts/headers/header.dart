@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../../../../futures/auth/controllers/user_controller.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/enums.dart';
 import '../../../../utils/constants/image_strings.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../../../../utils/device/device_utility.dart';
 import '../../images/h_rounded_image.dart';
+import '../../shimmers/shimmer.dart';
 
 class HHeader extends StatelessWidget implements PreferredSizeWidget {
   final GlobalKey<ScaffoldState>? scaffoldKey;
@@ -14,6 +17,7 @@ class HHeader extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = UserController.instance;
     return Container(
       padding: const EdgeInsets.symmetric(
           horizontal: HSizes.md, vertical: HSizes.sm),
@@ -56,19 +60,25 @@ class HHeader extends StatelessWidget implements PreferredSizeWidget {
               ),
               const SizedBox(width: HSizes.sm),
               if (!HDeviceUtils.isMobileScreen(context))
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      "Coding with H",
-                      style: Theme.of(context).textTheme.titleLarge,
-                    ),
-                    Text(
-                      "Hisham@gmail.com",
-                      style: Theme.of(context).textTheme.labelMedium,
-                    )
-                  ],
+                Obx(
+                  () => Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      controller.loading.value
+                          ? const HShimmerEffect(width: 100, height: 13)
+                          : Text(
+                              controller.user.value.fullName,
+                              style: Theme.of(context).textTheme.titleLarge,
+                            ),
+                      controller.loading.value
+                          ? const HShimmerEffect(width: 100, height: 13)
+                          : Text(
+                              controller.user.value.email,
+                              style: Theme.of(context).textTheme.labelMedium,
+                            )
+                    ],
+                  ),
                 )
             ],
           )

@@ -16,6 +16,10 @@ class CategoriesTable extends StatelessWidget {
       Text(controller.filteredItems.length.toString());
       return HPaginatedDataTable(
         minWidth: 700,
+        emptyShowAction: true,
+        emptyOnActionPressed: () async {
+          await controller.fetchData();
+        },
         // tableHeight: 900,
         // dataRowHeight: 110,
 

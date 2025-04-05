@@ -13,7 +13,10 @@ class OrdersRepo extends GetxController {
 
   Future<List<OrderModel>> getAllOrders() async {
     try {
-      final snapshot = await _db.collection("Orders").get();
+      final snapshot = await _db
+          .collection("Orders")
+          .orderBy('createdAt', descending: true)
+          .get();
       final result =
           snapshot.docs.map((doc) => OrderModel.fromSnapshot(doc)).toList();
 
@@ -37,6 +40,25 @@ class OrdersRepo extends GetxController {
       throw HPlatformException(e.code).message;
     } catch (e) {
       throw "Someting went weong. pleas try agin";
+    }
+  }
+
+  Stream<List<OrderModel>> getAllOrdersStream() {
+    try {
+      return _db
+          .collection("Orders")
+          .orderBy('createdAt', descending: true)
+          .snapshots()
+          .map((snapshot) => snapshot.docs
+              .map((doc) => OrderModel.fromSnapshot(doc))
+              .toList());
+    } on FirebaseException catch (e) {
+      throw HFirebaseException(e.code).message;
+    } on PlatformException catch (e) {
+      throw HPlatformException(e.code).message;
+    } catch (e) {
+      print(e);
+      throw "Something went wrong. Please try again.";
     }
   }
 }

@@ -73,6 +73,11 @@ class HSidbar extends StatelessWidget {
                       itemName: "Orders",
                       route: HRoutes.orders,
                     ),
+                    const MenuItem(
+                      icon: Iconsax.logout,
+                      itemName: "Logout",
+                      route: 'Logout',
+                    ),
                   ],
                 ),
               )

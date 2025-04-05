@@ -1,11 +1,11 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:h_dashboard_store/common/widgets/containers/rounded_container.dart';
-import 'package:h_dashboard_store/utils/constants/sizes.dart';
-import 'package:h_dashboard_store/utils/helpers/helper_functions.dart';
 
+import '../../../../../../common/widgets/containers/rounded_container.dart';
 import '../../../../../../common/widgets/icons/table_action_icon_buttons.dart';
+import '../../../../../../utils/constants/sizes.dart';
+import '../../../../../../utils/helpers/helper_functions.dart';
 import '../../../../controller/orders/orders_controller.dart';
 
 class OrdersRows extends DataTableSource {
@@ -15,7 +15,7 @@ class OrdersRows extends DataTableSource {
     final order = controller.filteredItems[index];
     return DataRow2(cells: [
       DataCell(Text(order.id)),
-      DataCell(Text(order.createdAt.toString())),
+      DataCell(Text(HHelperFunctions.getFormattedDate(order.createdAt!))),
       DataCell(HRoundedContainer(
         radius: HSizes.cardRadiusSm,
         padding: const EdgeInsets.symmetric(

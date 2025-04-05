@@ -83,7 +83,7 @@ class OrderModel {
       userId: map['userId'] as String,
       totalAmount: map['totalAmount'] as double,
       createdAt: map['createdAt'] != null
-          ? DateTime.fromMillisecondsSinceEpoch(map['createdAt'] as int)
+          ? DateTime.fromMillisecondsSinceEpoch(map['createdAt'])
           : null,
       deliveryMethod: map['deliveryMethod'] as String,
       shippingAddress: map['shippingAddress'] != null
@@ -112,8 +112,8 @@ class OrderModel {
         id: document.id,
         userId: data['userId'] as String,
         totalAmount: data['totalAmount'] as double,
-        createdAt: data['createdAt'] != null
-            ? DateTime.fromMillisecondsSinceEpoch(data['createdAt'] as int)
+        createdAt: (data['createdAt'] != null)
+            ? (data['createdAt'] as Timestamp).toDate()
             : null,
         deliveryMethod: data['deliveryMethod'] as String,
         shippingAddress: data['shippingAddress'] != null
