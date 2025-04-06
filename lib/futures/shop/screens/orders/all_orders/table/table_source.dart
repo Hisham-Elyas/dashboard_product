@@ -1,6 +1,7 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:h_dashboard_store/routes/routes.dart';
 
 import '../../../../../../common/widgets/containers/rounded_container.dart';
 import '../../../../../../common/widgets/icons/table_action_icon_buttons.dart';
@@ -33,7 +34,9 @@ class OrdersRows extends DataTableSource {
       DataCell(HTableActionButtons(
         view: true,
         edit: false,
-        onViewPressed: () {},
+        onViewPressed: () {
+          Get.toNamed(HRoutes.ordersDetails, arguments: order);
+        },
         onDeletePressed: () {
           // controller.confirmAndDeleteItem(order);
         },

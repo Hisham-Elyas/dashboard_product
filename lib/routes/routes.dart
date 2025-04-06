@@ -23,6 +23,7 @@ class HRoutes {
   static const String editProducts = '/edit-products';
 
   static const String orders = '/orders';
+  static const String ordersDetails = '/order-details';
   static const List sideMenuItems = [
     dashboard,
     banners,
