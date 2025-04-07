@@ -16,7 +16,7 @@ class OrderModel {
   final String shippingCompany;
   final String? shippingNotes;
   final String paymentMethod;
-  final OrderStatus orderStatus;
+  OrderStatus orderStatus;
   final List<CartItemModel> item;
 
   OrderModel({

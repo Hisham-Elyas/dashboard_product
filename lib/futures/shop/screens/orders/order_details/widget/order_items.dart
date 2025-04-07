@@ -86,7 +86,7 @@ class OrderItems extends StatelessWidget {
                       ? HSizes.xl * 1.4
                       : HSizes.xl * 2,
                   child: Text(
-                    item.totalAmount,
+                    "${item.totalAmount} ﷼",
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
                 ),

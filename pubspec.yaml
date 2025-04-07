@@ -35,6 +35,7 @@ dependencies:
   intl: ^0.20.2
   lottie: ^3.1.0
   shimmer: ^3.0.0
+  skeletonizer: ^1.4.3
   clipboard: ^0.1.3
   image_picker: ^1.1.0
   url_launcher: ^6.2.6

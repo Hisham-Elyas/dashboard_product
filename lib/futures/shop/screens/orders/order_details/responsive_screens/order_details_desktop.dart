@@ -49,18 +49,19 @@ class OrderDetailsDesktopScreen extends StatelessWidget {
 
                             OrderTransactio(order: order)
                           ],
-                        ))
+                        )),
+                    const SizedBox(width: HSizes.spaceBtwSections),
+                    Expanded(
+                      child: Column(
+                        children: [
+                          /// Customer Info
+                          CustomerInfoOrder(order: order),
+                          const SizedBox(height: HSizes.spaceBtwSections),
+                        ],
+                      ),
+                    )
                   ],
                 ),
-
-                Expanded(
-                    child: Column(
-                  children: [
-                    /// Customer Info
-                    CustomerInfoOrder(order: order),
-                    const SizedBox(height: HSizes.spaceBtwSections),
-                  ],
-                ))
               ],
             )),
       ),

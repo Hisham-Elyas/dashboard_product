@@ -68,4 +68,23 @@ class UserRepo extends GetxController {
       throw "Someting went weong. pleas try agin";
     }
   }
+
+  Future<UserModel> fetchUserDetailsById(String? userId) async {
+    try {
+      final docSnapshot = await _db.collection("Users").doc(userId).get();
+      final user = UserModel.fromSnapshot(docSnapshot);
+      // saveUserInfo(user: user);
+      return user;
+    } on FirebaseAuthException catch (e) {
+      throw HFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw HFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const HFormatException();
+    } on PlatformException catch (e) {
+      throw HPlatformException(e.code).message;
+    } catch (e) {
+      throw "Someting went weong. pleas try agin";
+    }
+  }
 }

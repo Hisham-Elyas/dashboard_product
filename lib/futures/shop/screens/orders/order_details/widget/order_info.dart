@@ -5,7 +5,9 @@ import 'package:h_dashboard_store/utils/constants/enums.dart';
 import 'package:h_dashboard_store/utils/constants/sizes.dart';
 import 'package:h_dashboard_store/utils/device/device_utility.dart';
 import 'package:h_dashboard_store/utils/helpers/helper_functions.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
+import '../../../../controller/orders/orders_controller.dart';
 import '../../../../model/orders_model.dart';
 
 class OrderInfo extends StatelessWidget {
@@ -14,6 +16,8 @@ class OrderInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(OrdersController());
+    controller.orderStatus.value = order.orderStatus;
     return HRoundedContainer(
         padding: const EdgeInsets.all(HSizes.defaultSpace),
         child: Column(
@@ -50,29 +54,39 @@ class OrderInfo extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text('Status'),
-                        HRoundedContainer(
-                          radius: HSizes.cardRadiusSm,
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 0, horizontal: HSizes.md),
-                          backgroundColor: HHelperFunctions.getOrderStatusColor(
-                                  order.orderStatus)
-                              .withOpacity(0.1),
-                          child: DropdownButton<OrderStatus>(
-                            padding: const EdgeInsets.symmetric(vertical: 0),
-                            value: order.orderStatus,
-                            onChanged: (OrderStatus? newVal) {},
-                            items: OrderStatus.values.map((OrderStatus status) {
-                              return DropdownMenuItem<OrderStatus>(
-                                value: status,
-                                child: Text(
-                                  status.name.capitalize.toString(),
-                                  style: TextStyle(
-                                      color:
-                                          HHelperFunctions.getOrderStatusColor(
-                                              status)),
-                                ),
-                              );
-                            }).toList(),
+                        Obx(
+                          () => Skeletonizer(
+                            enabled: controller.statusLoader.value,
+                            child: HRoundedContainer(
+                              radius: HSizes.cardRadiusSm,
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 0, horizontal: HSizes.md),
+                              backgroundColor:
+                                  HHelperFunctions.getOrderStatusColor(
+                                          controller.orderStatus.value)
+                                      .withOpacity(0.1),
+                              child: DropdownButton<OrderStatus>(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 0),
+                                value: controller.orderStatus.value,
+                                onChanged: (OrderStatus? newVal) {
+                                  if (newVal == null) return;
+                                  controller.updateOrderStatus(order, newVal);
+                                },
+                                items: OrderStatus.values
+                                    .map((OrderStatus status) {
+                                  return DropdownMenuItem<OrderStatus>(
+                                    value: status,
+                                    child: Text(
+                                      status.name.capitalize.toString(),
+                                      style: TextStyle(
+                                          color: HHelperFunctions
+                                              .getOrderStatusColor(status)),
+                                    ),
+                                  );
+                                }).toList(),
+                              ),
+                            ),
                           ),
                         ),
                       ],

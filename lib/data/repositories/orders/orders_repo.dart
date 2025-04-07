@@ -43,6 +43,32 @@ class OrdersRepo extends GetxController {
     }
   }
 
+  // Store a new user order
+  Future<void> addOrder(OrderModel order) async {
+    try {
+      await _db.collection('Orders').add(order.toMap());
+    } on FirebaseException catch (e) {
+      throw HFirebaseException(e.code).message;
+    } on PlatformException catch (e) {
+      throw HPlatformException(e.code).message;
+    } catch (e) {
+      throw "Someting went weong. pleas try agin";
+    }
+  }
+
+  Future<void> updateOrderSpecificValue(
+      String orderId, Map<String, dynamic> data) async {
+    try {
+      await _db.collection("Orders").doc(orderId).update(data);
+    } on FirebaseException catch (e) {
+      throw HFirebaseException(e.code).message;
+    } on PlatformException catch (e) {
+      throw HPlatformException(e.code).message;
+    } catch (e) {
+      throw "Someting went weong. pleas try agin";
+    }
+  }
+
   Stream<List<OrderModel>> getAllOrdersStream() {
     try {
       return _db
