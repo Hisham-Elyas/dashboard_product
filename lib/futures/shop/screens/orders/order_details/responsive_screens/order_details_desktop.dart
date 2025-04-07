@@ -7,7 +7,7 @@ import '../../../../model/orders_model.dart';
 import '../widget/customer_Info_order.dart';
 import '../widget/order_info.dart';
 import '../widget/order_items.dart';
-import 'order_transactio.dart';
+import '../widget/order_transactio.dart';
 
 class OrderDetailsDesktopScreen extends StatelessWidget {
   final OrderModel order;
@@ -18,46 +18,46 @@ class OrderDetailsDesktopScreen extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-            padding: const EdgeInsets.all(HSizes.defaultSpace),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const HBreadcrumbsWithHeading(
-                  returnToPreviousScreen: true,
-                  heading: "Order Details",
-                  breadcrumbsItems: [HRoutes.orders, "Order Details"],
-                ),
-                const SizedBox(height: HSizes.spaceBtwSections),
-                // body
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    /// left side order info
-                    Expanded(
-                        flex: 2,
-                        child: Column(
-                          children: [
-                            /// order info
-                            OrderInfo(order: order),
-                            const SizedBox(height: HSizes.spaceBtwSections),
+          padding: const EdgeInsets.all(HSizes.defaultSpace),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const HBreadcrumbsWithHeading(
+                returnToPreviousScreen: true,
+                heading: "Order Details",
+                breadcrumbsItems: [HRoutes.orders, "Order Details"],
+              ),
+              const SizedBox(height: HSizes.spaceBtwSections),
 
-                            /// Order Items
-                            OrderItems(order: order),
-                            const SizedBox(height: HSizes.spaceBtwSections),
+              // Desktop layout - 3:1 ratio
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Left side (75% width)
+                  Expanded(
+                    flex: 3,
+                    child: Column(
+                      children: [
+                        OrderInfo(order: order),
+                        const SizedBox(height: HSizes.spaceBtwSections),
+                        OrderItems(order: order),
+                        const SizedBox(height: HSizes.spaceBtwSections),
+                        OrderTransactio(order: order),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(width: HSizes.spaceBtwSections),
 
-                            /// Order Transactio
-
-                            OrderTransactio(order: order)
-                          ],
-                        )),
-                    const SizedBox(width: HSizes.spaceBtwSections),
-                    Expanded(
-                      child: CustomerInfoOrder(order: order),
-                    )
-                  ],
-                ),
-              ],
-            )),
+                  // Right side (25% width)
+                  Expanded(
+                    flex: 1,
+                    child: CustomerInfoOrder(order: order),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

@@ -48,7 +48,7 @@ class OrderInfo extends StatelessWidget {
                         style: Theme.of(context).textTheme.bodyLarge),
                   ],
                 )),
-                Expanded(
+                Flexible(
                     flex: HDeviceUtils.isMobileScreen(context) ? 2 : 1,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,6 +66,8 @@ class OrderInfo extends StatelessWidget {
                                           controller.orderStatus.value)
                                       .withOpacity(0.1),
                               child: DropdownButton<OrderStatus>(
+                                isExpanded: true,
+                                underline: const SizedBox(),
                                 padding:
                                     const EdgeInsets.symmetric(vertical: 0),
                                 value: controller.orderStatus.value,
@@ -91,6 +93,7 @@ class OrderInfo extends StatelessWidget {
                         ),
                       ],
                     )),
+                const SizedBox(width: HSizes.spaceBtwItems),
                 Expanded(
                     child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

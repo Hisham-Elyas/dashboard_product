@@ -8,7 +8,7 @@ import '../../../../utils/constants/enums.dart';
 import '../../model/orders_model.dart';
 
 class DashboardController extends GetxController {
-  DashboardController get instance => Get.find<DashboardController>();
+  static DashboardController get instance => Get.find<DashboardController>();
 
   // Reactive variables
   final RxMap<OrderStatus, int> orderStatusCount = <OrderStatus, int>{}.obs;

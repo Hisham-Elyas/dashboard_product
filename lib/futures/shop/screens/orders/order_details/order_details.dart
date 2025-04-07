@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 
 import '../../../../../common/widgets/layouts/templates/site_layout.dart';
 import 'responsive_screens/order_details_desktop.dart';
+import 'responsive_screens/order_details_mobile.dart';
+import 'responsive_screens/order_details_tablet.dart';
 
 class OrderDetailsScreen extends StatelessWidget {
   const OrderDetailsScreen({super.key});
@@ -12,6 +14,8 @@ class OrderDetailsScreen extends StatelessWidget {
     final order = Get.arguments;
     return HSiteTemplate(
       desktop: OrderDetailsDesktopScreen(order: order),
+      tablet: OrderDetailsTabletScreen(order: order),
+      mobile: OrderDetailsMobileScreen(order: order),
     );
   }
 }
