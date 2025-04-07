@@ -52,13 +52,7 @@ class OrderDetailsDesktopScreen extends StatelessWidget {
                         )),
                     const SizedBox(width: HSizes.spaceBtwSections),
                     Expanded(
-                      child: Column(
-                        children: [
-                          /// Customer Info
-                          CustomerInfoOrder(order: order),
-                          const SizedBox(height: HSizes.spaceBtwSections),
-                        ],
-                      ),
+                      child: CustomerInfoOrder(order: order),
                     )
                   ],
                 ),

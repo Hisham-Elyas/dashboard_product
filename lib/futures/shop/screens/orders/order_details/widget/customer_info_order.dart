@@ -41,9 +41,9 @@ class CustomerInfoOrder extends StatelessWidget {
                   image: HImages.user),
               const SizedBox(width: HSizes.spaceBtwItems),
               Obx(
-                () => Skeletonizer(
-                  enabled: controller.loading.value,
-                  child: Expanded(
+                () => Expanded(
+                  child: Skeletonizer(
+                    enabled: controller.loading.value,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
