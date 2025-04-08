@@ -8,6 +8,7 @@ import '../../../../../../common/widgets/loaders/loader_animation.dart';
 import '../../../../../../utils/constants/sizes.dart';
 import '../../../../controller/orders/orders_controller.dart';
 import '../table/data_table.dart';
+import '../widget/order_status_filter.dart';
 
 class OrdersDesktopScreen extends StatelessWidget {
   const OrdersDesktopScreen({super.key});
@@ -47,7 +48,13 @@ class OrdersDesktopScreen extends StatelessWidget {
                             if (controller.isLoading.value) {
                               return const HLoaderAnimation();
                             }
-                            return const OrdersTable();
+                            return const Column(
+                              children: [
+                                OrderStatusFilter(),
+                                SizedBox(height: HSizes.spaceBtwItems),
+                                OrdersTable(),
+                              ],
+                            );
                           },
                         )
                       ]),

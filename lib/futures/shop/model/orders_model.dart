@@ -11,7 +11,7 @@ class OrderModel {
   final String userId;
   final double totalAmount;
   DateTime? createdAt;
-  final String deliveryMethod;
+  final DeliveryMethod deliveryMethod;
   final Address? shippingAddress;
   final String shippingCompany;
   final String? shippingNotes;
@@ -38,7 +38,7 @@ class OrderModel {
     String? userId,
     double? totalAmount,
     DateTime? createdAt,
-    String? deliveryMethod,
+    DeliveryMethod? deliveryMethod,
     Address? shippingAddress,
     String? shippingCompany,
     String? shippingNotes,
@@ -67,7 +67,7 @@ class OrderModel {
       'userId': userId,
       'totalAmount': totalAmount,
       'createdAt': FieldValue.serverTimestamp(), // Always update this field
-      'deliveryMethod': deliveryMethod,
+      'deliveryMethod': deliveryMethod.name.toString(),
       'shippingAddress': shippingAddress?.toMap(),
       'shippingCompany': shippingCompany,
       'shippingNotes': shippingNotes,
@@ -85,7 +85,8 @@ class OrderModel {
       createdAt: map['createdAt'] != null
           ? DateTime.fromMillisecondsSinceEpoch(map['createdAt'])
           : null,
-      deliveryMethod: map['deliveryMethod'] as String,
+      deliveryMethod: DeliveryMethod.values
+          .byName(map['deliveryMethod'] ?? DeliveryMethod.branchPickup.name),
       shippingAddress: map['shippingAddress'] != null
           ? Address.fromMap(map['shippingAddress'] as Map<String, dynamic>)
           : null,
@@ -115,7 +116,8 @@ class OrderModel {
         createdAt: (data['createdAt'] != null)
             ? (data['createdAt'] as Timestamp).toDate()
             : null,
-        deliveryMethod: data['deliveryMethod'] as String,
+        deliveryMethod: DeliveryMethod.values
+            .byName(data['deliveryMethod'] ?? DeliveryMethod.branchPickup.name),
         shippingAddress: data['shippingAddress'] != null
             ? Address.fromMap(data['shippingAddress'] as Map<String, dynamic>)
             : null,
@@ -141,7 +143,7 @@ class OrderModel {
         id: '',
         userId: '',
         totalAmount: 0,
-        deliveryMethod: '',
+        deliveryMethod: DeliveryMethod.branchPickup,
         shippingAddress: null,
         shippingCompany: '',
         paymentMethod: '',

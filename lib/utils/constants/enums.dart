@@ -18,6 +18,36 @@ enum ImageType { asset, network, memory, file }
 
 enum MediaCategory { folders, banners, brands, categories, products, users }
 
-enum OrderStatus { pending, processing, shipped, delivered, cancelled }
+enum OrderStatus {
+  pending,
+  processing,
+  shipped,
+  delivered,
+  cancelled,
+  readyForPickup
+}
 
-enum PaymentMethods { paypal, googlePay, applePay, visa, masterCard, creditCard, paystack, razorPay, paytm }
+enum DeliveryMethod { homeDelivery, branchPickup }
+
+extension DeliveryTypeExtension on DeliveryMethod {
+  String get nameFormatted {
+    switch (this) {
+      case DeliveryMethod.homeDelivery:
+        return "Home Delivery";
+      case DeliveryMethod.branchPickup:
+        return "Branch Pickup";
+    }
+  }
+}
+
+enum PaymentMethods {
+  paypal,
+  googlePay,
+  applePay,
+  visa,
+  masterCard,
+  creditCard,
+  paystack,
+  razorPay,
+  paytm
+}

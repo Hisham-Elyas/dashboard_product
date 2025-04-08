@@ -15,7 +15,7 @@ class OrdersTable extends StatelessWidget {
     return Obx(() {
       Text(controller.filteredItems.length.toString());
       return HPaginatedDataTable(
-        emptyShowAction: true,
+        emptyShowAction: false,
         emptyOnActionPressed: () async {
           await controller.fetchData();
         },

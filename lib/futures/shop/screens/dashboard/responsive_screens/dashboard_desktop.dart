@@ -30,9 +30,8 @@ class DashboardDesktopScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const HBreadcrumbsWithHeading(
+              const HPageHeading(
                 heading: "Overview",
-                breadcrumbsItems: [],
               ),
               const SizedBox(height: HSizes.spaceBtwSections),
 

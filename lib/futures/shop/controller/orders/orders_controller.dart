@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:multi_select_flutter/multi_select_flutter.dart';
 
 import '../../../../data/abstract/base_data_table_controller.dart';
 import '../../../../data/repositories/orders/orders_repo.dart';
@@ -11,6 +12,64 @@ class OrdersController extends HBaseTableController<OrderModel> {
   final RxBool statusLoader = false.obs;
   Rx<OrderStatus> orderStatus = OrderStatus.pending.obs;
   final _ordersRepo = Get.put(OrdersRepo());
+  // For multi-select filtering
+  final RxList<OrderStatus> selectedStatuses = <OrderStatus>[].obs;
+  final List<MultiSelectItem<OrderStatus>> statusItems = [
+    MultiSelectItem(OrderStatus.pending, 'Pending'),
+    MultiSelectItem(OrderStatus.processing, 'Processing'),
+    MultiSelectItem(OrderStatus.shipped, 'Shipped'),
+    MultiSelectItem(OrderStatus.delivered, 'Delivered'),
+    MultiSelectItem(OrderStatus.cancelled, 'Cancelled'),
+  ];
+  //
+  final Rx<DeliveryMethod?> selectedDeliveryMethod = Rx<DeliveryMethod?>(null);
+
+  final List<MultiSelectItem<DeliveryMethod>> deliveryMethodsItems = [
+    MultiSelectItem(DeliveryMethod.homeDelivery, 'Home Delivery'),
+    MultiSelectItem(DeliveryMethod.branchPickup, 'Branch Pickup'),
+  ];
+
+// Update method
+  void updateDeliveryMethodFilter(DeliveryMethod? method) {
+    selectedDeliveryMethod.value = method;
+    applyFilters();
+  }
+
+  // Apply all active filters (status and search)
+  void applyFilters() {
+    List<OrderModel> tempList = allItems;
+
+    // Filter by selected OrderStatus
+    if (selectedStatuses.isNotEmpty) {
+      tempList = tempList
+          .where((order) => selectedStatuses.contains(order.orderStatus))
+          .toList();
+    }
+
+    // Filter by selected DeliveryMethod
+    if (selectedDeliveryMethod.value != null) {
+      tempList = tempList
+          .where(
+              (order) => order.deliveryMethod == selectedDeliveryMethod.value)
+          .toList();
+    }
+
+    // Apply search query
+    final query = searchTextController.text.trim();
+    if (query.isNotEmpty) {
+      tempList =
+          tempList.where((item) => containsSearchQuer(item, query)).toList();
+    }
+
+    // Final filtered result
+    filteredItems.assignAll(tempList);
+  }
+
+  // Update status filters
+  void updateStatusFilters(List<OrderStatus> selected) {
+    selectedStatuses.assignAll(selected);
+    applyFilters();
+  }
 
   // Update Product Status
   Future<void> updateOrderStatus(
@@ -54,7 +113,7 @@ class OrdersController extends HBaseTableController<OrderModel> {
 
   @override
   Future<void> deleteItem(OrderModel item) {
-    throw UnimplementedError();
+    throw _ordersRepo.deleteOrders(item.id);
   }
 
   @override

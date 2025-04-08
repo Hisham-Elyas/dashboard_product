@@ -38,7 +38,7 @@ class OrdersRows extends DataTableSource {
           Get.toNamed(HRoutes.ordersDetails, arguments: order);
         },
         onDeletePressed: () {
-          // controller.confirmAndDeleteItem(order);
+          controller.confirmAndDeleteItem(order);
         },
       )),
     ]);
