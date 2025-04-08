@@ -5,11 +5,13 @@ import 'package:get/get.dart';
 import '../../../futures/shop/model/orders_model.dart';
 import '../../../utils/exceptions/firebase_exceptions.dart';
 import '../../../utils/exceptions/platform_exceptions.dart';
+import '../notification/notification_repo.dart';
 
 class OrdersRepo extends GetxController {
   static OrdersRepo get instance => Get.find();
 
   final FirebaseFirestore _db = FirebaseFirestore.instance;
+  final NotificationRepo notificationRepo = Get.put(NotificationRepo());
 
   Future<List<OrderModel>> getAllOrders() async {
     try {
@@ -56,10 +58,17 @@ class OrdersRepo extends GetxController {
     }
   }
 
-  Future<void> updateOrderSpecificValue(
-      String orderId, Map<String, dynamic> data) async {
+  Future<void> updateOrderSpecificValue(OrderModel order) async {
     try {
-      await _db.collection("Orders").doc(orderId).update(data);
+      await _db
+          .collection("Orders")
+          .doc(order.id)
+          .update({'orderStatus': order.orderStatus.name.toString()});
+      await notificationRepo.sendOrderStatusNotification(
+        orderId: order.id,
+        userId: order.userId,
+        newStatus: order.orderStatus,
+      );
     } on FirebaseException catch (e) {
       throw HFirebaseException(e.code).message;
     } on PlatformException catch (e) {

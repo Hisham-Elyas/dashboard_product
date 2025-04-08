@@ -28,6 +28,11 @@ class OrderInfo extends StatelessWidget {
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             const SizedBox(height: HSizes.spaceBtwSections),
+            Text(
+              "DeliveryMethod : ${order.deliveryMethod.nameFormatted}",
+              style: Theme.of(context).textTheme.headlineSmall,
+            ),
+            const SizedBox(height: HSizes.spaceBtwItems),
             Row(
               children: [
                 Expanded(

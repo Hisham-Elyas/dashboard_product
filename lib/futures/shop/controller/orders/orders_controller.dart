@@ -19,6 +19,7 @@ class OrdersController extends HBaseTableController<OrderModel> {
     MultiSelectItem(OrderStatus.processing, 'Processing'),
     MultiSelectItem(OrderStatus.shipped, 'Shipped'),
     MultiSelectItem(OrderStatus.delivered, 'Delivered'),
+    MultiSelectItem(OrderStatus.readyForPickup, 'Ready for Pickup'),
     MultiSelectItem(OrderStatus.cancelled, 'Cancelled'),
   ];
   //
@@ -77,8 +78,7 @@ class OrdersController extends HBaseTableController<OrderModel> {
     try {
       statusLoader.value = true;
       order.orderStatus = newStatus;
-      await _ordersRepo.updateOrderSpecificValue(
-          order.id, {'orderStatus': newStatus.name.toString()});
+      await _ordersRepo.updateOrderSpecificValue(order);
       // updateItemFromLists(order);
       orderStatus.value = newStatus;
       HLoaders.successSnackBar(
