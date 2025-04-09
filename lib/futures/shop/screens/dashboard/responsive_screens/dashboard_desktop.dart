@@ -66,7 +66,9 @@ class DashboardDesktopScreen extends StatelessWidget {
             Expanded(
               child: OverviewCard(
                 title: "Total Orders",
-                value: controller.orders.length.toString(),
+                value: controller.orders.length,
+                isNumber: true,
+                // value: HHelperFunctions.formatNumber(controller.orders.length),
                 icon: Iconsax.shopping_cart,
                 color: Colors.blue,
               ),
@@ -75,7 +77,8 @@ class DashboardDesktopScreen extends StatelessWidget {
             Expanded(
               child: OverviewCard(
                 title: "Total Revenue",
-                value: "${controller.totalRevenue.toStringAsFixed(2)} ﷼",
+                value: controller.totalRevenue,
+                // value: HHelperFunctions.formatCurrency(controller.totalRevenue),
                 icon: Iconsax.money,
                 color: Colors.green,
               ),
@@ -84,7 +87,9 @@ class DashboardDesktopScreen extends StatelessWidget {
             Expanded(
               child: OverviewCard(
                 title: "Avg. Order",
-                value: "${controller.averageOrderValue.toStringAsFixed(2)} ﷼",
+                value: controller.averageOrderValue,
+                // value: HHelperFunctions.formatCurrency(
+                //     controller.averageOrderValue),
                 icon: Iconsax.chart,
                 color: Colors.orange,
               ),
@@ -97,7 +102,7 @@ class DashboardDesktopScreen extends StatelessWidget {
             Expanded(
               child: MiniStatCard(
                 title: "Delivered",
-                value: controller.deliveredCount.toString(),
+                value: controller.deliveredCount,
                 color:
                     HHelperFunctions.getOrderStatusColor(OrderStatus.delivered),
               ),
@@ -106,7 +111,7 @@ class DashboardDesktopScreen extends StatelessWidget {
             Expanded(
               child: MiniStatCard(
                 title: "Processing",
-                value: controller.processingCount.toString(),
+                value: controller.processingCount,
                 color: HHelperFunctions.getOrderStatusColor(
                     OrderStatus.processing),
               ),
@@ -115,13 +120,37 @@ class DashboardDesktopScreen extends StatelessWidget {
             Expanded(
               child: MiniStatCard(
                 title: "Pending",
-                value: controller.pendingCount.toString(),
+                value: controller.pendingCount,
                 color:
                     HHelperFunctions.getOrderStatusColor(OrderStatus.pending),
               ),
             ),
           ],
         ),
+        const SizedBox(height: HSizes.spaceBtwItems),
+        Row(
+          children: [
+            Expanded(
+              child: OverviewCard(
+                title: "Total Home Delivery Orders",
+                value: controller.homeDeliveryOrderCount,
+                isNumber: true,
+                icon: Iconsax.truck,
+                color: Colors.green,
+              ),
+            ),
+            const SizedBox(width: HSizes.spaceBtwItems),
+            Expanded(
+              child: OverviewCard(
+                title: "Total Branch Pickup Orders",
+                value: controller.branchPickupOrderCount,
+                isNumber: true,
+                icon: Iconsax.shop,
+                color: Colors.blue,
+              ),
+            ),
+          ],
+        )
       ],
     );
   }

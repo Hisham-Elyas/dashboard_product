@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:h_dashboard_store/utils/helpers/helper_functions.dart';
 
 import '../../../../../common/widgets/containers/circular_container.dart';
 import '../../../../../common/widgets/containers/rounded_container.dart';
@@ -6,7 +7,7 @@ import '../../../../../utils/constants/sizes.dart';
 
 class MiniStatCard extends StatelessWidget {
   final String title;
-  final String value;
+  final dynamic value;
   final Color color;
   const MiniStatCard({
     super.key,
@@ -31,7 +32,8 @@ class MiniStatCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(title, style: Theme.of(context).textTheme.labelMedium),
-              Text(value, style: Theme.of(context).textTheme.titleLarge),
+              Text(HHelperFunctions.formatNumber(value),
+                  style: Theme.of(context).textTheme.titleLarge),
             ],
           ),
         ],

@@ -8,7 +8,7 @@ class BannersScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return HSiteTemplate(
+    return const HSiteTemplate(
       desktop: BannersDesktopScreen(),
       mobile: BannersDesktopScreen(),
       tablet: BannersDesktopScreen(),

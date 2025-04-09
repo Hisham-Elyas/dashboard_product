@@ -61,8 +61,8 @@ class StatusOrderTable extends StatelessWidget {
                           Text(status.name.capitalize!),
                         ],
                       )),
-                      DataCell(Text(count.toString())),
-                      DataCell(Text("${amount.toStringAsFixed(2)} ﷼")),
+                      DataCell(Text(HHelperFunctions.formatNumber(count))),
+                      DataCell(Text(HHelperFunctions.formatCurrency(amount))),
                       if (!HDeviceUtils.isMobileScreen(context))
                         DataCell(Text("$percentage%")),
                     ]);

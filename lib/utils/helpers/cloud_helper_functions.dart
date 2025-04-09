@@ -1,3 +1,6 @@
+// ignore: avoid_web_libraries_in_flutter
+import 'dart:developer';
+// ignore: avoid_web_libraries_in_flutter
 import 'dart:html' as html;
 import 'dart:io';
 
@@ -121,10 +124,10 @@ class HCloudHelperFunctions {
       Reference ref = FirebaseStorage.instance.refFromURL(downloadUrl);
       await ref.delete();
 
-      print('File deleted successfully.');
+      log('File deleted successfully.');
     } on FirebaseException catch (e) {
       if (e.code == 'object-not-found') {
-        print('The file does not exist in Firebase Storage.');
+        log('The file does not exist in Firebase Storage.');
       } else {
         throw e.message!;
       }

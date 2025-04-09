@@ -5,6 +5,20 @@ import 'package:intl/intl.dart';
 import '../constants/enums.dart';
 
 class HHelperFunctions {
+  static String formatCurrency(dynamic amount) {
+    final formatter = NumberFormat.currency(
+      // locale: 'en_US',
+      symbol: '﷼',
+      decimalDigits: 2,
+    );
+    return formatter.format(amount);
+  }
+
+  static String formatNumber(dynamic number) {
+    final formatter = NumberFormat('#,###');
+    return formatter.format(number);
+  }
+
   static DateTime getStartOfWeek(DateTime date) {
     final int daysUntilMonday = date.weekday - 1;
     final DateTime startOfWeek = date.subtract(Duration(days: daysUntilMonday));

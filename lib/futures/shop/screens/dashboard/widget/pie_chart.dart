@@ -23,7 +23,7 @@ class MyPieChart extends StatelessWidget {
               style: Theme.of(context).textTheme.headlineSmall),
           const SizedBox(height: HSizes.spaceBtwItems),
           SizedBox(
-            height: 300,
+            height: 345,
             child: Obx(() => PieChart(
                   PieChartData(
                     sections: controller.orderStatusCount.entries.map((entry) {

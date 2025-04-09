@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -28,7 +30,7 @@ class OrdersRepo extends GetxController {
     } on PlatformException catch (e) {
       throw HPlatformException(e.code).message;
     } catch (e) {
-      print(e);
+      log(e.toString());
       throw "Someting went weong. pleas try agin";
     }
   }
@@ -104,7 +106,7 @@ class OrdersRepo extends GetxController {
     } on PlatformException catch (e) {
       throw HPlatformException(e.code).message;
     } catch (e) {
-      print(e);
+      log(e.toString());
       throw "Something went wrong. Please try again.";
     }
   }

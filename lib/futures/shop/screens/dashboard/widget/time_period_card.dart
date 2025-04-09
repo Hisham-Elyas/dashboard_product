@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:h_dashboard_store/utils/helpers/helper_functions.dart';
 
 import '../../../../../common/widgets/containers/rounded_container.dart';
 import '../../../../../utils/constants/colors.dart';
@@ -45,7 +46,7 @@ class TimePeriodCard extends StatelessWidget {
           ),
           const SizedBox(height: HSizes.sm),
           Text(
-            "${amount.toStringAsFixed(2)} ﷼",
+            HHelperFunctions.formatCurrency(amount),
             style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                   color: HColors.primary,
                   fontWeight: FontWeight.bold,

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:h_dashboard_store/common/widgets/containers/rounded_container.dart';
 import 'package:h_dashboard_store/common/widgets/images/h_rounded_image.dart';
 import 'package:h_dashboard_store/utils/constants/colors.dart';
-import 'package:h_dashboard_store/utils/constants/image_strings.dart';
 import 'package:h_dashboard_store/utils/constants/sizes.dart';
 import 'package:h_dashboard_store/utils/device/device_utility.dart';
 
@@ -42,10 +41,8 @@ class OrderItems extends StatelessWidget {
                     child: Row(children: [
                   HRoundedImage(
                     backgroundColor: HColors.primaryBackground,
-                    imageType: item.productImageUrl != null
-                        ? ImageType.network
-                        : ImageType.asset,
-                    image: item.productImageUrl ?? HImages.defaultImage,
+                    imageType: ImageType.network,
+                    image: item.productImageUrl,
                   ),
                   const SizedBox(width: HSizes.spaceBtwItems),
                   Expanded(

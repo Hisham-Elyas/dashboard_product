@@ -93,6 +93,7 @@ class OrdersController extends HBaseTableController<OrderModel> {
   void listenToOrdersStream() {
     isLoading.value = true;
     _ordersRepo.getAllOrdersStream().listen((orders) {
+      //  orders.sort((a, b) => b.createdAt.compareTo(a.createdAt));
       allItems.assignAll(orders);
       filteredItems.assignAll(orders);
       selectedRows.assignAll(List.generate(orders.length, (index) => false));

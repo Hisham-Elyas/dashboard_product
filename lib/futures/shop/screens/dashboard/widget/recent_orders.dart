@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:h_dashboard_store/utils/helpers/helper_functions.dart';
 
 import '../../../../../common/widgets/containers/rounded_container.dart';
 import '../../../../../utils/constants/sizes.dart';
@@ -38,7 +39,8 @@ class RecentOrders extends StatelessWidget {
                   final order = controller.orders[index];
                   return ListTile(
                     leading: Text("#${order.id}"),
-                    title: Text("${order.totalAmount.toStringAsFixed(2)} ﷼"),
+                    title: Text(
+                        HHelperFunctions.formatCurrency(order.totalAmount)),
                     subtitle: Text(order.orderStatus.name.capitalize!),
                     trailing: Chip(
                       label: Text(order.paymentMethod),

@@ -4,6 +4,7 @@ import '../../../../routes/routes.dart';
 import '../../../../utils/device/device_utility.dart';
 
 class SidebarController extends GetxController {
+  static SidebarController get instance => Get.find<SidebarController>();
   final activeItem = HRoutes.dashboard.obs;
   final hoverItem = ''.obs;
   void changeActiveItemTo(String route) => activeItem.value = route;

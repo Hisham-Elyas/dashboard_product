@@ -72,7 +72,8 @@ class DashboardMobileScreen extends StatelessWidget {
           width: double.infinity,
           child: OverviewCard(
             title: "Total Orders",
-            value: controller.orders.length.toString(),
+            isNumber: true,
+            value: controller.orders.length,
             icon: Iconsax.shopping_cart,
             color: Colors.blue,
           ),
@@ -82,7 +83,7 @@ class DashboardMobileScreen extends StatelessWidget {
           width: double.infinity,
           child: OverviewCard(
             title: "Total Revenue",
-            value: "${controller.totalRevenue.toStringAsFixed(2)} ﷼",
+            value: controller.totalRevenue,
             icon: Iconsax.money,
             color: Colors.green,
           ),
@@ -92,7 +93,7 @@ class DashboardMobileScreen extends StatelessWidget {
           width: double.infinity,
           child: OverviewCard(
             title: "Avg. Order",
-            value: "${controller.averageOrderValue.toStringAsFixed(2)} ﷼",
+            value: controller.averageOrderValue,
             icon: Iconsax.chart,
             color: Colors.orange,
           ),
@@ -105,7 +106,7 @@ class DashboardMobileScreen extends StatelessWidget {
               Expanded(
                 child: MiniStatCard(
                   title: "Delivered",
-                  value: controller.deliveredCount.toString(),
+                  value: controller.deliveredCount,
                   color: HHelperFunctions.getOrderStatusColor(
                       OrderStatus.delivered),
                 ),
@@ -114,7 +115,7 @@ class DashboardMobileScreen extends StatelessWidget {
               Expanded(
                 child: MiniStatCard(
                   title: "Processing",
-                  value: controller.processingCount.toString(),
+                  value: controller.processingCount,
                   color: HHelperFunctions.getOrderStatusColor(
                       OrderStatus.processing),
                 ),
@@ -127,8 +128,28 @@ class DashboardMobileScreen extends StatelessWidget {
           width: double.infinity,
           child: MiniStatCard(
             title: "Pending",
-            value: controller.pendingCount.toString(),
+            value: controller.pendingCount,
             color: HHelperFunctions.getOrderStatusColor(OrderStatus.pending),
+          ),
+        ),
+        const SizedBox(height: HSizes.spaceBtwItems),
+        SizedBox(
+          width: double.infinity,
+          child: OverviewCard(
+            title: "Total Home Delivery Orders",
+            value: controller.homeDeliveryOrderCount,
+            icon: Iconsax.truck,
+            color: Colors.green,
+          ),
+        ),
+        const SizedBox(height: HSizes.spaceBtwItems),
+        SizedBox(
+          width: double.infinity,
+          child: OverviewCard(
+            title: "Total Branch Pickup Orders",
+            value: controller.branchPickupOrderCount,
+            icon: Iconsax.shop,
+            color: Colors.blue,
           ),
         ),
       ],

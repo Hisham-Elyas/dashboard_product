@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import '../../../../../common/widgets/containers/circular_container.dart';
 import '../../../../../common/widgets/containers/rounded_container.dart';
 import '../../../../../utils/constants/sizes.dart';
+import '../../../../../utils/helpers/helper_functions.dart';
 
 class OverviewCard extends StatelessWidget {
   final String title;
-  final String value;
+  final dynamic value;
   final IconData icon;
   final Color color;
+  final bool isNumber;
 
   const OverviewCard({
     super.key,
@@ -16,6 +18,7 @@ class OverviewCard extends StatelessWidget {
     required this.value,
     required this.icon,
     required this.color,
+    this.isNumber = false,
   });
 
   @override
@@ -42,11 +45,19 @@ class OverviewCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: HSizes.sm),
-          Text(
-            value,
-            style: Theme.of(context).textTheme.headlineMedium,
-            overflow: TextOverflow.ellipsis,
-          ),
+          if (isNumber) ...[
+            Text(
+              HHelperFunctions.formatNumber(value),
+              style: Theme.of(context).textTheme.headlineMedium,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ] else ...[
+            Text(
+              HHelperFunctions.formatCurrency(value),
+              style: Theme.of(context).textTheme.headlineMedium,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ],
         ],
       ),
     );
